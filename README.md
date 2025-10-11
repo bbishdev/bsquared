@@ -33,10 +33,10 @@ https://bsquared.dev
 ├── data/             # Static content files
 ├── docs/             # Project documentation
 │   ├── PRD.md        # Product Requirements
-│   └── TDD.md        # Technical Design
-└── cycles/           # Development cycles
-    ├── 01-tui-distribution-foundation/
-    └── cycles.md     # Cycle tracker
+│   ├── TDD.md        # Technical Design
+│   └── cycles/       # Development cycles
+│       ├── 01-tui-distribution-foundation/
+│       └── cycles.md # Cycle tracker
 ```
 
 ## Development
@@ -45,13 +45,13 @@ This project is organized into **development cycles**, each designed to be compl
 
 ### Current Cycle
 
-**[Cycle 01: TUI Distribution Foundation](./cycles/01-tui-distribution-foundation/README.md)**
+**[Cycle 01: TUI Distribution Foundation](./docs/cycles/01-tui-distribution-foundation/README.md)**
 
 Setting up the foundational architecture with a shared TUI package that powers both SSH and Web access.
 
 ### All Cycles
 
-View the complete development roadmap: **[cycles.md](./cycles.md)**
+View the complete development roadmap: **[cycles.md](./docs/cycles.md)**
 
 ## Tech Stack
 
@@ -130,7 +130,7 @@ This project uses a structured workflow with feature branches and pull requests 
 **Quick Start**:
 
 1. Read the [Workflow Guide](./WORKFLOW.md)
-2. Start with [Cycle 01](./cycles/01-tui-distribution-foundation/README.md)
+2. Start with [Cycle 01](./docs/cycles/01-tui-distribution-foundation/README.md)
 3. Create a feature branch: `git checkout -b feat/cycle-01-task-001-description`
 4. Complete the task following the instructions
 5. Open a PR when done
@@ -142,7 +142,7 @@ See **[WORKFLOW.md](./WORKFLOW.md)** for the complete process.
 
 - **[PRD](./docs/PRD.md)** - Product Requirements Document
 - **[TDD](./docs/TDD.md)** - Technical Design Document
-- **[Cycles](./cycles.md)** - Development roadmap and progress
+- **[Cycles](./docs/cycles.md)** - Development roadmap and progress
 - **[Workflow](./WORKFLOW.md)** - Development workflow and git process
 
 ## Contributing

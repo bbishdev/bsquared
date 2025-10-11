@@ -13,7 +13,7 @@ This document tracks all development cycles for the Bsquared interactive portfol
 ## Cycle Structure
 
 ```
-/cycles/
+/docs/cycles/
   /01-tui-distribution-foundation/    ✓ Ready to start
   /02-command-system/                 ○ Planned
   /03-ai-integration/                 ○ Planned
@@ -149,11 +149,11 @@ Cycle 04: [░░░░░░░░░░] Planned
 
 ## Working on a Cycle
 
-> **Important**: Follow the [Workflow Guide](./WORKFLOW.md) for the complete git workflow including feature branches and pull requests.
+> **Important**: Follow the [Workflow Guide](../WORKFLOW.md) for the complete git workflow including feature branches and pull requests.
 
 ### Starting a New Cycle
 
-1. Navigate to the cycle directory: `cd cycles/0X-cycle-name/`
+1. Navigate to the cycle directory: `cd docs/cycles/0X-cycle-name/`
 2. Read the cycle README thoroughly
 3. Create a feature branch: `git checkout -b feat/cycle-0X-task-001-description`
 4. Start with task 001

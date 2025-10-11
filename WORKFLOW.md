@@ -85,7 +85,7 @@ git pull origin main
 git checkout -b feat/cycle-01-task-001-monorepo-setup
 
 # Navigate to the cycle directory
-cd cycles/01-tui-distribution-foundation
+cd docs/cycles/01-tui-distribution-foundation
 
 # Read the task file
 cat 001-initialize-monorepo-structure.md
@@ -192,7 +192,7 @@ git branch -d feat/cycle-01-task-001-monorepo-setup
 Update the cycle README:
 
 ```bash
-# Edit cycles/01-tui-distribution-foundation/README.md
+# Edit docs/cycles/01-tui-distribution-foundation/README.md
 # Change: - [ ] **[001]...
 # To:     - [x] **[001]...
 
@@ -212,7 +212,7 @@ Update the cycle README:
 Commit the progress update:
 
 ```bash
-git add cycles/01-tui-distribution-foundation/README.md
+git add docs/cycles/01-tui-distribution-foundation/README.md
 git commit -m "docs(cycle-01): mark task 001 complete"
 git push origin main
 ```
@@ -360,7 +360,7 @@ git pull origin main
 git checkout -b feat/cycle-01-task-XXX-description
 
 # 3. Read the task thoroughly
-cat cycles/01-../XXX-task-name.md
+cat docs/cycles/01-../XXX-task-name.md
 
 # 4. Work on the task (commit incrementally)
 # ... make changes ...
@@ -378,7 +378,7 @@ git push origin feat/cycle-01-task-XXX-description
 git checkout main
 git pull origin main
 # Update cycle README with progress
-git add cycles/01-.../README.md
+git add docs/cycles/01-.../README.md
 git commit -m "docs(cycle-01): mark task XXX complete"
 git push origin main
 ```
