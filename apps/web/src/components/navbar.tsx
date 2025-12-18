@@ -20,18 +20,18 @@ import {
 } from "lucide-react";
 
 const navItems = [
-  { href: "/normal", icon: HomeIcon, label: "Home" },
-  { href: "/normal/blog", icon: NotebookIcon, label: "Blog" },
+  { href: "/home", icon: HomeIcon, label: "Home" },
+  { href: "/writing", icon: NotebookIcon, label: "Writing" },
 ];
 
 const socialItems = [
-  { href: "https://github.com/bburg", icon: Github, label: "GitHub" },
+  { href: "https://github.com/btbishop93", icon: Github, label: "GitHub" },
   {
-    href: "https://linkedin.com/in/brendenburg",
+    href: "https://www.linkedin.com/in/brenden-bishop/",
     icon: Linkedin,
     label: "LinkedIn",
   },
-  { href: "https://x.com/brendenburg", icon: Twitter, label: "X" },
+  { href: "https://x.com/bbish937", icon: Twitter, label: "X" },
 ];
 
 export function Navbar() {

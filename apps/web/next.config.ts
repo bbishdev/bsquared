@@ -1,8 +1,12 @@
 import type { NextConfig } from "next";
+import createMDX from "@next/mdx";
 
 const nextConfig: NextConfig = {
-  // Enable MDX support for blog
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
 };
 
-export default nextConfig;
+const withMDX = createMDX({
+  extension: /\.mdx?$/,
+});
+
+export default withMDX(nextConfig);

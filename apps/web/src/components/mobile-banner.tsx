@@ -3,14 +3,18 @@
 import { useEffect, useState } from "react";
 import { X, Monitor } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { hasDismissedMobileBanner, dismissMobileBanner } from "@/lib/device";
+import {
+  isMobileDevice,
+  hasDismissedMobileBanner,
+  dismissMobileBanner,
+} from "@/lib/device";
 
 export function MobileBanner() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Only show if not previously dismissed
-    if (!hasDismissedMobileBanner()) {
+    // Only show on mobile if not previously dismissed
+    if (isMobileDevice() && !hasDismissedMobileBanner()) {
       setIsVisible(true);
     }
   }, []);

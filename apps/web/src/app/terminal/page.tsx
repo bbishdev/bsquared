@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { ArrowLeft, Terminal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -23,13 +23,13 @@ const ASCII_ART = `
 
 const TYPING_MESSAGES = [
   "$ initializing terminal...",
-  "$ loading hardcore mode...",
+  "$ loading terminal mode...",
   "$ ERROR: module not yet deployed",
   "$ status: UNDER CONSTRUCTION 🚧",
   "$ check back soon...",
 ];
 
-export default function HardcorePage() {
+export default function TerminalPage() {
   const [displayedLines, setDisplayedLines] = useState<string[]>([]);
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
@@ -108,7 +108,7 @@ export default function HardcorePage() {
               <div className="w-3 h-3 rounded-full bg-yellow-500" />
               <div className="w-3 h-3 rounded-full bg-green-500" />
               <span className="ml-2 text-xs text-zinc-400">
-                bsquared.dev — hardcore
+                bsquared.dev — terminal
               </span>
             </div>
 
@@ -153,7 +153,7 @@ export default function HardcorePage() {
             className="text-zinc-400 border-zinc-700 hover:text-green-400 hover:border-green-500/50"
           >
             <Link
-              href="https://github.com/bburg"
+              href="https://github.com/btbishop93/bsquared"
               target="_blank"
               rel="noopener noreferrer"
             >

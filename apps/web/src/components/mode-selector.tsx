@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Globe, Terminal } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -21,30 +21,19 @@ function ModePanel({ mode, href, disabled }: ModePanelProps) {
     <Link
       href={disabled ? "#" : href}
       className={cn(
-        "relative flex flex-1 flex-col items-center justify-center",
+        "relative flex flex-1 flex-col items-center pt-[20vh] md:pt-[35vh]",
         "min-h-[50vh] md:min-h-screen",
         "transition-all duration-500 ease-out",
         "group cursor-pointer",
         isNormal
-          ? "bg-gradient-to-br from-zinc-900 to-zinc-950"
-          : "bg-gradient-to-br from-black to-zinc-950",
+          ? "bg-linear-to-br from-zinc-900 to-zinc-950"
+          : "bg-linear-to-br from-black to-zinc-950",
         disabled && "cursor-not-allowed"
       )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={(e) => disabled && e.preventDefault()}
     >
-      {/* Background glow effect */}
-      <motion.div
-        className={cn(
-          "absolute inset-0 opacity-0 transition-opacity duration-500",
-          isNormal
-            ? "bg-gradient-to-br from-blue-500/10 via-transparent to-purple-500/10"
-            : "bg-gradient-to-br from-red-500/10 via-transparent to-orange-500/10"
-        )}
-        animate={{ opacity: isHovered ? 1 : 0 }}
-      />
-
       {/* Content */}
       <motion.div
         className="relative z-10 flex flex-col items-center gap-6"
@@ -152,7 +141,7 @@ function ModePanel({ mode, href, disabled }: ModePanelProps) {
 
       {/* Divider line (only on normal side, right edge) */}
       {isNormal && (
-        <div className="absolute right-0 top-1/4 hidden h-1/2 w-px bg-gradient-to-b from-transparent via-zinc-700 to-transparent md:block" />
+        <div className="absolute right-0 top-1/4 hidden h-1/2 w-px bg-linear-to-b from-transparent via-zinc-700 to-transparent md:block" />
       )}
     </Link>
   );
@@ -161,8 +150,8 @@ function ModePanel({ mode, href, disabled }: ModePanelProps) {
 export function ModeSelector() {
   return (
     <div className="flex min-h-screen flex-col md:flex-row">
-      <ModePanel mode="normal" href="/normal" />
-      <ModePanel mode="hardcore" href="/hardcore" disabled />
+      <ModePanel mode="normal" href="/home" />
+      <ModePanel mode="hardcore" href="/terminal" />
     </div>
   );
 }
