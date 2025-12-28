@@ -50,4 +50,3 @@ export function getGradientForString(str: string): string {
   const index = Math.abs(hash) % UI_GRADIENTS.length;
   return UI_GRADIENTS[index];
 }
-

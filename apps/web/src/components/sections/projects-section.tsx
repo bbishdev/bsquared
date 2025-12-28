@@ -23,6 +23,7 @@ export interface ProjectItem {
   status: ProjectStatus;
   technologies: readonly string[];
   image?: string;
+  video?: string;
   links?: readonly ProjectLinkItem[];
 }
 
@@ -98,6 +99,7 @@ export function ProjectsSection({
                 status={project.status}
                 tags={project.technologies}
                 image={project.image}
+                video={project.video}
                 links={project.links?.map((link) => ({
                   icon: getLinkIcon(link.type),
                   type: link.type,
@@ -138,8 +140,10 @@ export function ProjectsSection({
                     title={project.title}
                     description={project.description}
                     dates={project.dates}
+                    status={project.status}
                     tags={project.technologies}
                     image={project.image}
+                    video={project.video}
                     links={project.links?.map((link) => ({
                       icon: getLinkIcon(link.type),
                       type: link.type,

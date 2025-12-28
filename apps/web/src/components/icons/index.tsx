@@ -86,4 +86,3 @@ export function GooglePlayIcon(props: IconProps) {
     </svg>
   );
 }
-
