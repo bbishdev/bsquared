@@ -6,6 +6,7 @@
       "dates": "2025 - Now",
       "status": "development",
       "description": "Collaborative idea scoring and prioritization using a structured 10-factor framework. Combines blind peer ratings with AI scoring to surface what's worth building. **Waitlist live!**",
+      "image": "/riffolio.png",
       "technologies": [
         "TypeScript",
         "TailwindCSS",
@@ -49,6 +50,7 @@
       "status": "live",
       "description": "AI project management tool that turns product requirements into right-sized dev tasks based on your schedule, then handles git automation.",
       "technologies": ["TypeScript", "MCP", "Bun"],
+      "video": "/cycles.mp4",
       "links": [
         {
           "type": "Registry",
@@ -63,6 +65,7 @@
       "status": "live",
       "description": "Encrypted note-taking app built with Flutter and Dart, deployed to iOS and Android.",
       "technologies": ["Dart", "Flutter", "Firebase"],
+      "video": "/jumblebook.mp4",
       "links": [
         {
           "type": "App Store",
