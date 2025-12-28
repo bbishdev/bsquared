@@ -1,31 +1,75 @@
 /**
- * Interface for the TUI instance returned by createTUI()
+ * Callback for handling TUI output
+ */
+export type OutputHandler = (text: string) => void;
+
+/**
+ * Callback for handling user input
+ */
+export type InputHandler = (input: string) => void;
+
+/**
+ * Interface for the TUI instance
+ *
+ * The TUI is a platform-agnostic text processor. It doesn't render anything -
+ * instead it processes input and produces output that the platform (SSH/Web) displays.
  */
 export interface TUIInstance {
   /**
-   * Writes text to the output pane
+   * Process a line of user input.
+   * Triggers the input handler and may produce output via the output handler.
+   */
+  handleInput: (input: string) => void;
+
+  /**
+   * Write text to output (goes to registered output handler)
    */
   write: (text: string) => void;
 
   /**
-   * Reads input from the user (when they submit)
+   * Write a line to output (adds newline)
    */
-  onInput: (callback: (input: string) => void) => void;
+  writeLine: (text: string) => void;
 
   /**
-   * Starts the TUI (begins rendering)
+   * Register a handler for TUI output
+   * The platform (SSH/Web) uses this to receive text to display
    */
-  start: () => Promise<void>;
+  onOutput: (handler: OutputHandler) => void;
 
   /**
-   * Stops the TUI and cleans up
+   * Register a handler for processed input
+   * Used for custom input processing (commands, AI, etc.)
    */
-  stop: () => void;
+  onInput: (handler: InputHandler) => void;
+
+  /**
+   * Get the welcome message
+   */
+  getWelcome: () => string;
+
+  /**
+   * Get the prompt string
+   */
+  getPrompt: () => string;
 }
 
 /**
  * Options for creating a TUI instance
  */
 export interface TUIOptions {
+  /**
+   * Custom prompt string (default: "> ")
+   */
   prompt?: string;
+
+  /**
+   * Custom welcome message
+   */
+  welcome?: string;
+
+  /**
+   * Enable echo mode - automatically echo input back (default: true for testing)
+   */
+  echo?: boolean;
 }

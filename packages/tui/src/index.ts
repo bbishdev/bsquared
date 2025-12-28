@@ -1,2 +1,7 @@
 export { createTUI } from "./tui.js";
-export type { TUIInstance, TUIOptions } from "./types.js";
+export type {
+  TUIInstance,
+  TUIOptions,
+  OutputHandler,
+  InputHandler,
+} from "./types.js";

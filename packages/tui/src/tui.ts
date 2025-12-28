@@ -1,108 +1,101 @@
-import {
-  createCliRenderer,
-  type CliRenderer,
-  BoxRenderable,
-  TextRenderable,
-  InputRenderable,
-  InputRenderableEvents,
-} from "@opentui/core";
-import { TUIInstance, TUIOptions } from "./types.js";
+import type { TUIInstance, TUIOptions, OutputHandler, InputHandler } from "./types.js";
+
+const DEFAULT_WELCOME = `
+╔══════════════════════════════════════════════════════════════╗
+║                    BSQUARED TERMINAL                         ║
+║                                                              ║
+║  Type /help for available commands                           ║
+║  Or just ask me anything about Brenden                       ║
+╚══════════════════════════════════════════════════════════════╝
+`;
+
+const DEFAULT_PROMPT = "> ";
 
 /**
- * Creates a new TUI instance using OpenTUI
+ * Creates a new TUI instance
  *
- * This sets up:
- * - An input widget for user commands
- * - An output pane for displaying results
- * - Basic layout and styling
+ * The TUI is platform-agnostic - it processes input and produces output.
+ * The platform (SSH server, WebSocket, etc.) handles the actual I/O.
  *
- * @param options - Configuration options
- * @returns A TUI instance with methods to interact with the interface
+ * @example
+ * ```ts
+ * const tui = createTUI({ echo: true });
+ *
+ * // Platform sends output to terminal/xterm
+ * tui.onOutput((text) => socket.send(text));
+ *
+ * // Platform receives input from user
+ * socket.on('data', (data) => tui.handleInput(data));
+ *
+ * // Send welcome message
+ * tui.write(tui.getWelcome());
+ * tui.write(tui.getPrompt());
+ * ```
  */
-export async function createTUI(
-  options: TUIOptions = {}
-): Promise<TUIInstance> {
-  const prompt = options.prompt || "> ";
-  const inputCallbacks: Array<(input: string) => void> = [];
+export function createTUI(options: TUIOptions = {}): TUIInstance {
+  const prompt = options.prompt ?? DEFAULT_PROMPT;
+  const welcome = options.welcome ?? DEFAULT_WELCOME;
+  const echoEnabled = options.echo ?? true;
 
-  let renderer: CliRenderer | null = null;
-  let rootBox: BoxRenderable | null = null;
-  let outputText: TextRenderable | null = null;
-  let inputWidget: InputRenderable | null = null;
+  const outputHandlers: OutputHandler[] = [];
+  const inputHandlers: InputHandler[] = [];
+
+  /**
+   * Dispatch text to all registered output handlers
+   */
+  function dispatchOutput(text: string): void {
+    for (const handler of outputHandlers) {
+      handler(text);
+    }
+  }
+
+  /**
+   * Dispatch input to all registered input handlers
+   */
+  function dispatchInput(input: string): void {
+    for (const handler of inputHandlers) {
+      handler(input);
+    }
+  }
 
   const instance: TUIInstance = {
-    write: (text: string) => {
-      if (outputText) {
-        // Append new text to the output
-        const currentContent = outputText.content.toString();
-        outputText.content = currentContent + text + "\n";
+    handleInput(input: string): void {
+      const trimmed = input.trim();
+
+      // Echo the input back if echo mode is enabled
+      if (echoEnabled && trimmed) {
+        dispatchOutput(`Echo: ${trimmed}\n`);
       }
+
+      // Dispatch to input handlers for further processing
+      dispatchInput(trimmed);
+
+      // Show prompt for next input
+      dispatchOutput(prompt);
     },
 
-    onInput: (callback: (input: string) => void) => {
-      inputCallbacks.push(callback);
+    write(text: string): void {
+      dispatchOutput(text);
     },
 
-    start: async () => {
-      // Create the renderer
-      renderer = await createCliRenderer({
-        exitOnCtrlC: true,
-        useAlternateScreen: false,
-      });
-
-      // Create root container
-      rootBox = new BoxRenderable(renderer, {
-        width: "100%",
-        height: "100%",
-        flexDirection: "column",
-      });
-
-      // Create output pane (takes most of the space)
-      outputText = new TextRenderable(renderer, {
-        content: "Welcome to Bsquared Terminal\n",
-        width: "100%",
-        flexGrow: 1,
-        overflow: "hidden",
-      });
-
-      // Create input widget at the bottom
-      inputWidget = new InputRenderable(renderer, {
-        width: "100%",
-        placeholder: "Type a command...",
-        value: "",
-      });
-
-      // Handle input submission
-      inputWidget.on(InputRenderableEvents.ENTER, () => {
-        if (inputWidget) {
-          const input = (inputWidget as any)._value || "";
-
-          // Clear the input
-          (inputWidget as any)._value = "";
-
-          // Call all registered callbacks
-          inputCallbacks.forEach((callback) => callback(input));
-        }
-      });
-
-      // Add children to root box
-      rootBox.add(outputText);
-      rootBox.add(inputWidget);
-
-      // Add root box to renderer's root
-      renderer.root.add(rootBox);
-
-      // Focus the input widget
-      if (inputWidget) {
-        inputWidget.focus();
-      }
+    writeLine(text: string): void {
+      dispatchOutput(text + "\n");
     },
 
-    stop: () => {
-      if (renderer) {
-        renderer.destroy();
-        renderer = null;
-      }
+    onOutput(handler: OutputHandler): void {
+      outputHandlers.push(handler);
+    },
+
+    onInput(handler: InputHandler): void {
+      inputHandlers.push(handler);
+    },
+
+    getWelcome(): string {
+      return welcome;
+    },
+
+    getPrompt(): string {
+      return prompt;
     },
   };
 
