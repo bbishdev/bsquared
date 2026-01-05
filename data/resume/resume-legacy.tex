@@ -1,0 +1,191 @@
+%-------------------------
+% Brenden Bishop - Portfolio Resume
+% Two-column layout matching bsquared.xyz theme
+%-------------------------
+
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{paracol}
+\usepackage{ragged2e}
+\usepackage{fontspec}
+
+% Use Helvetica Neue (clean sans-serif available on macOS)
+\setmainfont{Helvetica Neue}[
+  UprightFont = * Light,
+  BoldFont = * Bold,
+  ItalicFont = * Light Italic,
+]
+
+% Monospace for code-like elements  
+\setmonofont{Menlo}[Scale=0.9]
+
+% Page setup
+\pagestyle{empty}
+
+% Margins
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.6in}
+\addtolength{\textwidth}{1.2in}
+\addtolength{\topmargin}{-0.5in}
+\addtolength{\textheight}{1.0in}
+
+% Colors matching site theme
+\definecolor{linkblue}{RGB}{52, 152, 219}
+\definecolor{sectioncolor}{RGB}{100, 100, 100}
+\definecolor{textgray}{RGB}{100, 100, 100}
+
+% Hyperlink setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=linkblue,
+    urlcolor=linkblue,
+}
+
+% Section formatting - tighter spacing to content
+\titleformat{\section}{
+  \vspace{-2pt}\color{sectioncolor}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-4pt}]
+
+% Custom commands - no indentation, left-aligned
+\newcommand{\resumeSubheading}[3]{
+  \noindent\textbf{#1} \\
+  {\small\color{textgray} #2 | #3}
+  \vspace{1pt}
+}
+
+\newcommand{\resumeSubheadingAlt}[2]{
+  \noindent\textbf{#1} \\
+  {\small\color{textgray} #2}
+  \vspace{1pt}
+}
+
+\newcommand{\resumeRole}[1]{
+  \noindent{\small #1}
+  \vspace{-2pt}
+}
+
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.15in, itemsep=2pt, parsep=0pt, topsep=0pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}}
+\newcommand{\resumeItem}[1]{\item\small{#1}}
+
+% Space between job entries
+\newcommand{\jobsep}{\vspace{10pt}}
+
+\begin{document}
+
+%----------HEADER----------
+\begin{center}
+    {\Huge Brenden \textbf{Bishop}} \\[6pt]
+    {\normalsize VP, Engineering — AI Platforms \& Developer Enablement} \\[2pt]
+    {\small\color{textgray} Founder • Product-Driven Engineer • AI Systems Builder} \\[6pt]
+    {\small \href{mailto:btbishop93@gmail.com}{btbishop93@gmail.com} $\cdot$ \href{https://bsquared.xyz}{bsquared.xyz}}
+\end{center}
+
+\vspace{-6pt}
+
+%----------TWO COLUMN LAYOUT----------
+\setlength{\columnsep}{0.4in}
+\begin{paracol}{2}
+
+%----------LEFT COLUMN----------
+
+\section{Professional Experience}
+\vspace{2pt}
+\noindent\textbf{Morgan Stanley — Vice President} \\
+{\small AI Platforms \& Developer Enablement} \\
+{\small\color{textgray} Jan 2021 – Present | New York, NY}
+\vspace{2pt}
+\resumeItemListStart
+  \resumeItem{Built and now lead a division-wide AI development platform used across Wealth Management Engineering, combining GitHub Copilot, LLMs, internal tools, and spec-driven workflows to change how software is written at scale}
+  \resumeItem{Designed and run a multi-week AI bootcamp for engineers and managers focused on context engineering, prompt design, RAG, tool-calling, and AI-assisted development, driving measurable increases in Copilot usage and PR velocity}
+  \resumeItem{Partnered with engineering leadership to embed AI into everyday workflows, shifting the organization from experimentation to production-grade AI usage}
+\resumeItemListEnd
+
+\vspace{4pt}
+\noindent{\small\textbf{Software Engineering Manager}} \\
+{\small Wealth Management Technology}
+\vspace{2pt}
+\resumeItemListStart
+  \resumeItem{Lead engineering strategy and delivery for five client-facing financial planning platforms across Morgan Stanley Online and E*TRADE, managing 12 engineers}
+  \resumeItem{Drove a modern platform rebuild over legacy systems, unifying two experiences into a single planning platform, reducing UX complexity, eliminating future tech debt, and saving \$2M+ in costs}
+  \resumeItem{Own architecture, execution, and delivery for products used by hundreds of thousands of retail clients}
+  \resumeItem{Led Nevernote, an AI-powered meeting intelligence Hackathon product built with Whisper, LangChain, and GPT to analyze and summarize Zoom conversations}
+\resumeItemListEnd
+
+\jobsep
+
+\noindent\textbf{Morgan Stanley — Analyst \& Associate} \\
+{\small\color{textgray} Aug 2015 – Jan 2021 | New York, NY} \\
+{\small Technical Business Analyst | Front-End Engineer | \textbf{``Tesla Award for Innovation''}}
+\vspace{2pt}
+\resumeItemListStart
+  \resumeItem{Led UI development for two financial planning applications in \textbf{Angular}, both \textbf{zero-to-one}}
+  \resumeItem{Collaborated with product and backend teams to ensure seamless integration and scalability}
+  \resumeItem{Mentored junior developers, conducted code reviews, promoting best practices}
+  \resumeItem{Created technical and functional requirements, workflows, and dependency management}
+\resumeItemListEnd
+
+\section{Skills}
+\vspace{2pt}
+\noindent\textbf{Languages} \\
+{\small JavaScript, TypeScript, Dart, Python, GraphQL} \\[4pt]
+\noindent\textbf{Libraries \& Frameworks} \\
+{\small React, Next.js, Tailwind CSS, Flutter, AI SDK} \\[4pt]
+\noindent\textbf{Platforms \& Tooling} \\
+{\small GCP, Vercel, Convex, Postgres, Docker, PostHog, OpenAI, OpenRouter}
+
+%----------SWITCH TO RIGHT COLUMN----------
+\switchcolumn
+
+\section{Entrepreneurial Experience}
+\vspace{2pt}
+\noindent\textbf{Personal Projects} \\
+{\small\color{textgray} Feb 2015 – Present | Long Island, NY}
+\vspace{2pt}
+\resumeItemListStart
+  \resumeItem{Web app with \textbf{Next.js}, deployed on \textbf{Vercel}, using \textbf{ffmpeg} to convert .mp4 videos for Apple App Store compliance (\href{https://ciderpress.vercel.app}{Ciderpress})}
+  \resumeItem{iOS/Mac App plugin for Safari that makes Brave Search the default browser (\href{https://apps.apple.com/us/app/braver-search/id6740840706}{Braver Search}) with over \textbf{18,500 DAUs}}
+  \resumeItem{Encrypted note-taking app, \href{https://apps.apple.com/us/app/jumblebook-notes/id6741652060}{Jumblebook Notes}, with \textbf{Flutter} and \textbf{Dart}, deploying to both \textbf{iOS} and \textbf{Android}}
+  \resumeItem{AI project management tool (\href{https://www.npmjs.com/package/cycles-mcp}{Cycles MCP}) that converts PRDs into right-sized dev tasks with git automation}
+\resumeItemListEnd
+
+\jobsep
+
+\noindent\textbf{\href{https://forwheel.app}{Forwheel} — Founder \& CEO} \\
+{\small\color{textgray} July 2021 – Present | Long Island, NY}
+\vspace{2pt}
+\resumeItemListStart
+  \resumeItem{Spearheaded vision, roadmap, and full-stack development of a B2B food truck app}
+  \resumeItem{Developed AI advisor `Garnish' using \textbf{OpenAI's Responses API} and \textbf{RAG} to provide intelligent recommendations for food truck operations}
+  \resumeItem{Launched on \textbf{iOS} and \textbf{Android} using \textbf{Flutter}, \textbf{Dart}, \textbf{GraphQL}, \textbf{Firebase} and \textbf{GCP}}
+  \resumeItem{Recruited, mentored, and led a remote cross-functional team of \textbf{5}, iterating quickly on the MVP}
+  \resumeItem{Engaged with food truck vendors and users to integrate feedback, enhancing UX and boosting retention by \textbf{39\%}}
+  \resumeItem{Secured contracts with \textbf{3} key food truck industry vendors to offer discounted goods and services}
+\resumeItemListEnd
+
+\jobsep
+
+\noindent\textbf{Rbitrage Capital — Founder \& CTO} \\
+{\small\color{textgray} Dec 2017 – Aug 2019 | New York, NY}
+\vspace{2pt}
+\resumeItemListStart
+  \resumeItem{Led the technical strategy for an algorithmic cryptocurrency trading platform, using \textbf{Java}, \textbf{React}, and \textbf{AWS}}
+  \resumeItem{Automated arbitrage trading, optimizing execution and growing AUM to \textbf{\$750K} in 18 months}
+  \resumeItem{Optimized trading strategy based on geographic proximity to exchanges, reducing trade execution time}
+\resumeItemListEnd
+
+\section{Education}
+\vspace{2pt}
+\noindent\textbf{\href{https://www.marist.edu}{Marist College}} \\
+{\small\color{textgray} Aug 2011 – May 2015 | Poughkeepsie, NY} \\
+{\small Bachelor's in \textbf{Computer Science} | GPA: \textbf{3.5}}
+
+\end{paracol}
+
+\end{document}

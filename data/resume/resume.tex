@@ -1,0 +1,259 @@
+%-------------------------
+% Brenden Bishop - V2 Modern Resume
+% Website-style layout with logos and colored badges
+%-------------------------
+
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{fontspec}
+\usepackage{tikz}
+\usepackage{tabularx}
+\usepackage{paracol}
+\usepackage{ragged2e}
+\usepackage{fontawesome5}
+
+% Use Helvetica Neue
+\setmainfont{Helvetica Neue}[
+  UprightFont = * Light,
+  BoldFont = * Bold,
+  ItalicFont = * Light Italic,
+]
+
+
+% Page setup
+\pagestyle{empty}
+
+% Margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.0in}
+\addtolength{\topmargin}{-0.5in}
+\addtolength{\textheight}{1.0in}
+
+% Colors
+\definecolor{linkblue}{RGB}{52, 152, 219}
+\definecolor{sectioncolor}{RGB}{60, 60, 60}
+\definecolor{textgray}{RGB}{100, 100, 100}
+
+% Skill badge colors (matching website)
+% Languages - light blue
+\definecolor{langbg}{RGB}{219, 234, 254}
+\definecolor{langtext}{RGB}{59, 130, 246}
+% Libraries & Frameworks - light purple
+\definecolor{libbg}{RGB}{243, 232, 255}
+\definecolor{libtext}{RGB}{147, 51, 234}
+% Platforms & Tooling - light green
+\definecolor{platbg}{RGB}{220, 252, 231}
+\definecolor{plattext}{RGB}{22, 163, 74}
+
+% Hyperlink setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=linkblue,
+    urlcolor=linkblue,
+}
+
+% Section formatting
+\titleformat{\section}{
+  \color{sectioncolor}\bfseries\large
+}{}{0em}{}[\vspace{-4pt}]
+
+% Skill badge commands (different colors per category)
+\newcommand{\langbadge}[1]{%
+  \tikz[baseline=(text.base)]{
+    \node[fill=langbg, text=langtext, rounded corners=3pt, inner sep=3pt, font=\small] (text) {#1};
+  }%
+}
+\newcommand{\libbadge}[1]{%
+  \tikz[baseline=(text.base)]{
+    \node[fill=libbg, text=libtext, rounded corners=3pt, inner sep=3pt, font=\small] (text) {#1};
+  }%
+}
+\newcommand{\platbadge}[1]{%
+  \tikz[baseline=(text.base)]{
+    \node[fill=platbg, text=plattext, rounded corners=3pt, inner sep=3pt, font=\small] (text) {#1};
+  }%
+}
+
+% Circular logo command (consistent 20pt diameter, maintains aspect ratio)
+\newcommand{\circlogo}[1]{%
+  \begin{tikzpicture}
+    \clip (0,0) circle (10pt);
+    \node at (0,0) {\includegraphics[width=20pt, height=20pt, keepaspectratio=false]{#1}};
+  \end{tikzpicture}%
+}
+% Circular logo that preserves aspect ratio (for logos that need it)
+\newcommand{\circlogoar}[1]{%
+  \begin{tikzpicture}
+    \clip (0,0) circle (10pt);
+    \node[inner sep=0pt] at (0,0) {\includegraphics[height=20pt]{#1}};
+  \end{tikzpicture}%
+}
+
+% Work header with circular logo (for bullet-style entries)
+\newcommand{\workheader}[3]{%
+  \noindent
+  \vspace{4pt}
+  \begin{tabularx}{\linewidth}{@{}l@{\hspace{4pt}} X r@{}}
+    \raisebox{-0.4\height}{\circlogo{#1}} &
+    \textbf{#2} &
+    {\small\color{textgray} #3}
+  \end{tabularx}
+  \vspace{-8pt}
+}
+
+% Sub-role header (not indented)
+\newcommand{\subrole}[1]{%
+  \vspace{2pt}
+  {\small\textbf{#1}}
+  \vspace{-2pt}
+}
+
+% Bullet list commands (indented from subtitles)
+\newcommand{\workliststart}{\begin{itemize}[leftmargin=0.5in, itemsep=1pt, parsep=0pt, topsep=2pt]}
+\newcommand{\worklistend}{\end{itemize}\vspace{2pt}}
+
+% Education entry with circular logo (for 2-col layout, no tabularx)
+\newcommand{\eduentry}[4]{%
+  \noindent
+  \raisebox{-0.4\height}{\circlogo{#1}}\hspace{4pt}\textbf{#2}\hfill{\small\color{textgray} #3}
+  \vspace{2pt}
+  
+  \noindent{\small #4}
+  \vspace{4pt}
+}
+
+\begin{document}
+
+%----------HEADER----------
+\noindent
+\begin{tabularx}{\linewidth}{@{}X r@{}}
+  {\Huge Hi, I'm Brenden} \raisebox{-0.1\height}{\includegraphics[height=20pt]{assets/wave.png}} &
+  {\small {\color{linkblue}\faEnvelope}\hspace{3pt}\href{mailto:btbishop93@gmail.com}{btbishop93@gmail.com} \hspace{6pt}|\hspace{6pt} {\color{linkblue}\faGlobe}\hspace{3pt}\href{https://bsquared.xyz}{bsquared.xyz}}
+\end{tabularx}
+
+\vspace{12pt}
+
+%----------INTRO + ABOUT (2-column)----------
+\setlength{\columnsep}{20pt}
+\begin{paracol}{2}
+
+%--- LEFT: Title + Intro ---
+\noindent{\small\textbf{VP, Engineering — AI Platforms \& Developer Enablement}}\\
+\noindent{\small\color{textgray} Founder • Product-Driven Engineer • AI Systems Builder}
+
+\vspace{6pt}
+\noindent{\small Husband, father, and technologist. Software Engineering Manager and chronic entrepreneur. I love building, tinkering, and learning new things. Addicted to coffee and X (Twitter).}
+
+\switchcolumn
+
+%--- RIGHT: About (no header) ---
+{\RaggedRight\small I'm a product-minded technologist with 10+ years of experience building zero-to-one products. At Morgan Stanley, I led five greenfield apps, managing 12 engineers. I launched an internal AI bootcamp accelerating adoption across Wealth Management. I'm also founder of Forwheel (150+ food trucks) and co-founded Rbitrage Capital (\$750K AUM).\par}
+
+\end{paracol}
+
+\vspace{4pt}
+
+%----------WORK EXPERIENCE----------
+\section{Work Experience}
+
+\workheader{assets/morgan-stanley.png}{Morgan Stanley}{2015 – Now}
+
+\subrole{AI Platforms \& Developer Enablement}
+\workliststart
+  \item\small Built and now lead a division-wide AI development platform across Wealth Management Engineering
+  \item\small Designed and run a multi-week AI bootcamp for engineers focused on context engineering, prompt design, RAG, and tool-calling
+  \item\small Partnered with engineering leadership to embed AI into everyday workflows
+\worklistend
+
+\subrole{Software Engineering Manager}
+\workliststart
+  \item\small Lead engineering strategy for five client-facing financial planning platforms, managing 12 engineers
+  \item\small Drove modern platform rebuild, unifying two experiences and saving \$2M+ in costs
+  \item\small Led Nevernote, an AI-powered meeting intelligence Hackathon product with Whisper, LangChain, and GPT
+\worklistend
+
+\vspace{4pt}
+\workheader{assets/forwheel.jpg}{\href{https://forwheel.app}{Forwheel}}{2021 – Now}
+
+\subrole{Founder}
+\workliststart
+  \item\small Created vision, roadmap, and full-stack development of a B2B food truck app
+  \item\small Developed AI advisor `Garnish' using \textbf{OpenAI} and \textbf{RAG} for intelligent recommendations
+  \item\small Launched on \textbf{iOS} and \textbf{Android} using \textbf{Flutter}, \textbf{Firebase} and \textbf{GCP}
+  \item\small Secured contracts with \textbf{3} key industry vendors for discounted goods and services
+\worklistend
+
+\vspace{4pt}
+\workheader{assets/rbitrage.png}{Rbitrage Capital}{2017 – 2019}
+
+\subrole{Co-Founder}
+\workliststart
+  \item\small Led technical strategy for algorithmic crypto trading platform using \textbf{Java}, \textbf{React}, and \textbf{AWS}
+  \item\small Automated arbitrage trading, growing AUM to \textbf{\$750K} in 18 months
+  \item\small Optimized trading strategy based on geographic proximity to exchanges
+\worklistend
+
+%----------SKILLS (3-column single row)----------
+\section{Skills}
+\begin{paracol}{3}
+\setlength{\columnsep}{12pt}
+
+%--- Languages ---
+\noindent\textbf{\small Languages}\\[3pt]
+\langbadge{JavaScript} \langbadge{TypeScript} \langbadge{Dart}\\[2pt]
+\langbadge{Python} \langbadge{GraphQL}
+
+\switchcolumn
+
+%--- Libraries & Frameworks ---
+\noindent\textbf{\small Libraries \& Frameworks}\\[3pt]
+\libbadge{React} \libbadge{Next.js} \libbadge{Tailwind CSS}\\[2pt]
+\libbadge{Flutter} \libbadge{AI SDK}
+
+\switchcolumn
+
+%--- Platforms & Tooling ---
+\noindent\textbf{\small Platforms \& Tooling}\\[3pt]
+\platbadge{GCP} \platbadge{Vercel} \platbadge{Convex}\\[2pt]
+\platbadge{Postgres} \platbadge{Docker} \platbadge{PostHog}\\[2pt]
+\platbadge{OpenAI} \platbadge{OpenRouter}
+
+\end{paracol}
+
+\vspace{2pt}
+
+%----------PROJECTS----------
+\section{My Projects}
+
+{\small\textbf{Check out my latest work}}\\
+{\small\color{textgray} I've worked on a variety of projects, from LLM Agents to mobile apps \& extensions. Here are a few of my favorites.}
+
+\vspace{4pt}
+\begin{itemize}[leftmargin=0.15in, itemsep=2pt, parsep=0pt, topsep=2pt]
+  \item\small Web app with \textbf{Next.js}, deployed on \textbf{Vercel}, using \textbf{ffmpeg} to convert .mp4 videos for Apple App Store compliance (\href{https://ciderpress.vercel.app}{Ciderpress})
+  \item\small iOS/Mac App plugin for Safari that makes Brave Search the default browser (\href{https://apps.apple.com/us/app/braver-search/id6740840706}{Braver Search}) with over \textbf{20k DAUs}
+  \item\small Encrypted note-taking app, \href{https://apps.apple.com/us/app/jumblebook-notes/id6741652060}{Jumblebook Notes}, with \textbf{Flutter} and \textbf{Dart}, deploying to both \textbf{iOS} and \textbf{Android}
+  \item\small AI project management tool (\href{https://www.npmjs.com/package/cycles-mcp}{Cycles MCP}) that converts PRDs into right-sized dev tasks with git automation
+\end{itemize}
+
+\vspace{2pt}
+
+%----------EDUCATION----------
+\section{Education}
+
+\noindent
+\begin{tabularx}{\linewidth}{@{}l l X r@{}}
+  \raisebox{-0.3\height}{\circlogoar{assets/marist.jpg}} &
+  \textbf{\href{https://www.marist.edu}{Marist College}}\hspace{4pt}|\hspace{4pt}{\small Bachelor's in Computer Science} &
+  &
+  {\small\color{textgray} 2011 – 2015}
+\end{tabularx}
+
+\end{document}

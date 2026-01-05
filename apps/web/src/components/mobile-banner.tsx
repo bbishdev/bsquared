@@ -10,9 +10,11 @@ import {
 } from "@/lib/device";
 
 export function MobileBanner() {
+  const [mounted, setMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     // Only show on mobile if not previously dismissed
     if (isMobileDevice() && !hasDismissedMobileBanner()) {
       setIsVisible(true);
@@ -24,7 +26,8 @@ export function MobileBanner() {
     setIsVisible(false);
   };
 
-  if (!isVisible) return null;
+  // Don't render anything until mounted to avoid hydration mismatch
+  if (!mounted || !isVisible) return null;
 
   return (
     <>

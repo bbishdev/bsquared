@@ -1,7 +1,25 @@
 import { notFound } from "next/navigation";
 import { compileMDX } from "next-mdx-remote/rsc";
-import { cache } from "react";
+import { cache, Suspense } from "react";
+import { Tweet } from "react-tweet";
 import { getAllArticles, getArticleBySlug } from "@/lib/articles";
+
+// Force static generation to avoid hydration issues
+export const dynamic = "force-static";
+
+// Wrapper to handle Tweet with Suspense
+function TweetEmbed({ id }: { id: string }) {
+  return (
+    <Suspense fallback={<div className="h-[400px] bg-muted/50 rounded-xl animate-pulse" />}>
+      <Tweet id={id} />
+    </Suspense>
+  );
+}
+
+// MDX components available in articles
+const mdxComponents = {
+  Tweet: TweetEmbed,
+};
 
 const getCompiledArticle = cache(async (slug: string) => {
   try {
@@ -9,6 +27,7 @@ const getCompiledArticle = cache(async (slug: string) => {
     const { content } = await compileMDX({
       source: article.content,
       options: { parseFrontmatter: false },
+      components: mdxComponents,
     });
     return { meta: article.meta, content };
   } catch {
