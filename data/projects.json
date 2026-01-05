@@ -68,12 +68,16 @@
       "video": "/jumblebook.mp4",
       "links": [
         {
+          "type": "Source",
+          "href": "https://github.com/btbishop93/jumblebook"
+        },
+        {
           "type": "App Store",
           "href": "https://apps.apple.com/us/app/jumblebook-notes/id6741652060"
         },
         {
-          "type": "Source",
-          "href": "https://github.com/btbishop93/jumblebook"
+          "type": "Google Play",
+          "href": "https://play.google.com/store/apps/details?id=xyz.bsquared.jumblebook"
         }
       ]
     },

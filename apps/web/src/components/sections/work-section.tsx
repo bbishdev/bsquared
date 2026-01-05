@@ -1,6 +1,11 @@
 import { BlurFade } from "@/components/ui/blur-fade";
 import { ResumeCard } from "@/components/resume-card";
 
+export interface WorkLinkItem {
+  type: string;
+  href: string;
+}
+
 export interface WorkItem {
   company: string;
   logoUrl?: string;
@@ -9,6 +14,7 @@ export interface WorkItem {
   start: string;
   end?: string | null;
   description?: string;
+  links?: readonly WorkLinkItem[];
 }
 
 export interface WorkSectionProps {
@@ -33,6 +39,7 @@ export function WorkSection({ work, blurFadeDelay }: WorkSectionProps) {
               href={item.href}
               period={`${item.start} - ${item.end ?? "Present"}`}
               description={item.description}
+              links={item.links}
             />
           </BlurFade>
         ))}
