@@ -82,7 +82,7 @@
       "href": "https://app-preview-converter.vercel.app",
       "dates": "2024 - Now",
       "status": "live",
-      "description": "Web app using ffmpeg to convert .mp4 videos for Apple App Store app previews compliance.",
+      "description": "Web app using ffmpeg wasm to convert .mp4 videos for Apple App Store app previews video format compliance.",
       "technologies": [
         "TypeScript",
         "TailwindCSS",
@@ -136,7 +136,16 @@
       "href": "#",
       "dates": "When I want to learn React Native :)",
       "status": "concept",
-      "description": "Toying with a new concept for a accountability app. **Proof is in the puddin'.**",
+      "description": "Toying with a new concept for a accountability app for achieving goals. **Proof is in the puddin'.**",
+      "technologies": [],
+      "links": []
+    },
+    {
+      "title": "BookmarX",
+      "href": "#",
+      "dates": "Soon... maybe?",
+      "status": "concept",
+      "description": "Thinking about wtf to do with all of my bookmarked posts on X. They often just sit there and collect dust.",
       "technologies": [],
       "links": []
     }

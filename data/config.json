@@ -1,11 +1,11 @@
 {
   "name": "Brenden Bishop",
   "initials": "BB",
-  "url": "https://bsquared.dev",
+  "url": "https://bsquared.xyz",
   "location": "United States",
   "title": "Builder & Technologist",
   "intro": "Husband, father, and technologist. Software Engineering Manager and chronic entrepreneur. I love building, tinkering, and learning new things. Addicted to coffee and X (Twitter).",
-  "bio": "I'm a product-minded technologist with 10+ years of experience building zero-to-one products. At Morgan Stanley, I led five greenfield client-facing apps across E*TRADE and Morgan Stanley Online, managing 12 engineers. \n\nI recently launched an internal AI bootcamp to teach devs how to use LLMs, Copilot, and AI-assisted workflows, accelerating adoption across our org.\n\nI'm also the founder of Forwheel, a platform serving 150+ food trucks, powered by our AI vendor advisor Garnish (OpenAI + RAG). I previously co-founded Rbitrage Capital, growing it to $750K AUM via crypto trading algorithms.",
+  "bio": "I'm a product-minded technologist with 10+ years of experience building zero-to-one products both professionally and personally. At Morgan Stanley, I've led five greenfield client-facing apps across E*TRADE and Morgan Stanley Online, managing 12 engineers. \n\nI recently launched an internal AI bootcamp to teach devs how LLMs work and how to best code with them, accelerating adoption across Wealth Management Technology. The training has been a success and is now expanding firm-wide to train ~20k developers.\n\nI'm also the founder of Forwheel, a mobile app helping 150+ food truck owners save time and money. I previously co-founded Rbitrage Capital, growing it to $750K AUM via crypto trading algorithms.",
   "avatarUrl": "/profile.jpeg",
   "resumeUrl": "/resume.pdf"
 }
