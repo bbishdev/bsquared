@@ -6,7 +6,7 @@
       "dates": "2025 - Now",
       "status": "development",
       "description": "Collaborative idea scoring and prioritization using a structured 10-factor framework. Combines blind peer ratings with AI scoring to surface what's worth building. **Waitlist live!**",
-      "image": "/riffolio.png",
+      "image": "/logos/riffolio.png",
       "technologies": [
         "TypeScript",
         "TailwindCSS",
@@ -29,9 +29,9 @@
       "href": "https://apps.apple.com/us/app/braver-search/id6740840706",
       "dates": "2025 - Now",
       "status": "live",
-      "description": "Safari plugin for iOS/Mac that makes Brave Search the default browser. **18,500+ daily active users**.",
+      "description": "Safari plugin for iOS/Mac that makes Brave Search the default browser. **20k+ daily active users**.",
       "technologies": ["Swift", "JavaScript", "Safari Extensions"],
-      "video": "/braver-search.mp4",
+      "video": "/demos/braver-search.mp4",
       "links": [
         {
           "type": "App Store",
@@ -50,8 +50,12 @@
       "status": "live",
       "description": "AI project management tool that turns product requirements into right-sized dev tasks based on your schedule, then handles git automation.",
       "technologies": ["TypeScript", "MCP", "Bun"],
-      "video": "/cycles.mp4",
+      "video": "/demos/cycles.mp4",
       "links": [
+        {
+          "type": "Source",
+          "href": "https://github.com/btbishop93/cycles-mcp"
+        },
         {
           "type": "Registry",
           "href": "https://www.npmjs.com/package/cycles-mcp?activeTab=readme"
@@ -65,7 +69,7 @@
       "status": "live",
       "description": "Encrypted note-taking app built with Flutter and Dart, deployed to iOS and Android.",
       "technologies": ["Dart", "Flutter", "Firebase"],
-      "video": "/jumblebook.mp4",
+      "video": "/demos/jumblebook.mp4",
       "links": [
         {
           "type": "Source",
@@ -101,7 +105,7 @@
         },
         {
           "type": "Source",
-          "href": "https://github.com/btbishop93/app-preview-converter"
+          "href": "https://github.com/btbishop93/ciderpress"
         }
       ]
     },
@@ -118,13 +122,22 @@
         "Convex",
         "Vercel"
       ],
-      "video": "/poolside.mp4",
+      "video": "/demos/poolside.mp4",
       "links": [
         {
           "type": "Source",
           "href": "https://github.com/btbishop93/poolside"
         }
       ]
+    },
+    {
+      "title": "BookmarX",
+      "href": "#",
+      "dates": "Soon... maybe?",
+      "status": "concept",
+      "description": "Thinking about wtf to do with all of my bookmarked posts on X. They often just sit there and collect dust.",
+      "technologies": [],
+      "links": []
     },
     {
       "title": "GitGood",
@@ -141,15 +154,6 @@
       "dates": "When I want to learn React Native :)",
       "status": "concept",
       "description": "Toying with a new concept for a accountability app for achieving goals. **Proof is in the puddin'.**",
-      "technologies": [],
-      "links": []
-    },
-    {
-      "title": "BookmarX",
-      "href": "#",
-      "dates": "Soon... maybe?",
-      "status": "concept",
-      "description": "Thinking about wtf to do with all of my bookmarked posts on X. They often just sit there and collect dust.",
       "technologies": [],
       "links": []
     }

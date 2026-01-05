@@ -1,0 +1,76 @@
+---
+title: "I'll never manage a DB without infra-as-code again"
+description: "Why infra as code matters and how Hasura makes it easy."
+date: "2023-2-15"
+published: true
+---
+
+I'm not typically one for blogging, but I felt compelled to share this…
+
+There I was - frustrated, tired, confused - all of a sudden our database hookup to Heroku was just FUBAR, gone, never to be seen again 👋. Smack in the middle of crunch-time, 10 days out from our Beta launch target date, and we just lost our whole database… 😱
+
+---
+
+## What is Hasura?
+
+[Hasura](https://hasura.io/) is a popular open-source GraphQL engine that allows developers to build and deploy scalable GraphQL APIs quickly and easily. They can use their existing database and create a GraphQL API with just a few clicks, making it an ideal solution for teams looking to automate and scale their GraphQL layer.
+
+## Don't know about GraphQL?
+
+![Please tell us more](/writing/hasura/what-is-graphql.gif)
+
+For those who don't know, [GraphQL](https://graphql.org/) is a query language for your API that was developed by Facebook as an alternative to REST APIs. It allows you to create flexible and scalable APIs where you can easily request exactly the data you need for a particular use case, rather than getting more data than you need or having to make multiple API calls to get all the data.
+
+Also, it's easy to update and evolve without breaking existing client applications. Since GraphQL is focused on the data rather than the endpoint, you can always add new fields or modify existing ones without affecting the way the client application accesses the data. It is particularly useful for applications that require frequent updates or for teams working on large, complex projects where the data requirements may change over time.
+
+---
+
+Now, back to Hasura… one of the standout features is its ability to allow you to define GraphQL schema, tables, metadata, and data using code. This means that if anything goes wrong with the database, you can easily recover by simply applying the metadata, migrations, and seeds using Hasura's command-line tools.
+
+> **Update:** This process is now made even simpler by Hasura via their "one-click" cloud deployments:
+
+<Tweet id="1623367865775562752" />
+
+## What happened to our database?
+
+At [Forwheel](https://forwheel.app), we were using Hasura to host our dev instance and connect to a Heroku Postgres database. When Heroku announced they were removing their free-tier model, we assumed the service would be paused until we paid to upgrade. But to our surprise, a few weeks later, our entire Dev database seemed to vanish!
+
+![What is happening!?](/writing/hasura/db-gone.webp)
+
+We had just lost our Dev DB and all of it's data! This was a critical time period for feature development and bug fixes, and I was completely devastated. Based on my prior experience setting up DBs using traditional methods, I was convinced this would set us back at least two weeks to try to restore this. (There's only two of us developing this in our spare time, as we both have full-time jobs.)
+
+After blowing my lid like Gordon Ramsay, I then remembered that Hasura had all these concepts of metadata, seeds, and migrations. These also work so that when you modify the database simply through the Hasura Console UI, you can easily generate commit changes using the Hasura CLI. Using just a few commands, we were able to apply our metadata, migrations, and seeds to a brand new Dev database in a matter of seconds (once I realized this was possible of course 🤦‍♂️).
+
+And shout-out to [Neon](https://neon.tech/) for offering a free-tier solution for our new Dev instance. Highly recommend!
+
+---
+
+## How to setup Hasura with a "database as code" implementation
+
+Setting up your Hasura cloud instance locally it's pretty straightforward and is done in a few simple steps:
+
+1. First, install the CLI by running `npm install -g hasura-cli` or `yarn global add hasura-cli`
+2. Create a new Hasura project by running `hasura init`. This will create a new directory with the required files and dependencies for your Hasura project.
+3. Once your project is set up, you can apply your metadata by running `hasura metadata apply`. This will create your GraphQL schema and tables based on your metadata file.
+4. After your metadata is applied, you can apply your migrations by running `hasura migrate apply`. This will update your database with any changes you've made to your schema.
+5. Finally, you can apply your seeds by running `hasura seed apply`. This will populate your database with the test and user data you've defined in your seeds file.
+
+![Wow that was easy!](/writing/hasura/that-easy.gif)
+
+That's it! Full tutorial can be found [here](https://hasura.io/docs/latest/migrations-metadata-seeds/migrations-metadata-setup/). Worth mentioning, Hasura's documentation is fantastic.
+
+We run these commands as our database grows and evolves to easily keep all our database changes in code. I don't know about you, but not having too much backend or DB experience, this was a lifesaver for me. I only had a handful of times dealing with database as code and I remember it being a nightmare with migrations, versioning, permissions, etc. - it never just quite "worked". I always seemed to have random conflicts and issues. Hasura just works.
+
+## Conclusion
+
+Hasura has proven to be an invaluable tool for our team at Forwheel as we work to build and deploy scalable GraphQL APIs for our food truck vendor-facing application. It has saved us time and headaches, and we are grateful to the Hasura team for their hard work in creating such a powerful, easy-to-use solution. For just two developers focused on the Mobile App UIs, not having to deal with a middle layer has increased our development time tenfold - and we are only scratching the surface of what it has to offer.
+
+Yes, we signed up for Hasura Cloud, but our usage is still early and slow at the moment, so it's all been free! It's an incredible product/service and I am genuinely excited for when we reach the level of usage to actually start paying for this. And no, I am not being paid to write this, it's just that good.
+
+Oh, I almost forgot… the ONE time we had an issue with the Hasura Cloud console UI, we got an immediate email back and an opportunity to walk through our issue over Google Meet with their support staff within 48 hours. Again, we have not paid for this service yet.
+
+I know, generally speaking, this type/level of service won't last forever. I hope it does, but I am sure they will continue to grow and scale massively, making it difficult. Regardless, a major recognition is deserved and I know many more developers who could benefit from this, so BRAVO Hasura, Bravo! 👏👏👏
+
+P.S. shame on you Heroku...
+
+![Not cool...](/writing/hasura/not-cool.gif)
