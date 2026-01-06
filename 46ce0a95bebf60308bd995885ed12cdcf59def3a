@@ -1,0 +1,23 @@
+apps/web/src/app/writing/[slug]/page.tsx
+  9405711d724f50f5 5-6,75-81
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.0.25",
+  "base_commit_sha": "46ce0a95bebf60308bd995885ed12cdcf59def3a",
+  "prompts": {
+    "9405711d724f50f5": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "39edef37-9d6c-420b-ae9f-f7ce3b374f25",
+        "model": "claude-4.5-opus-high-thinking"
+      },
+      "human_author": "Brenden Bishop <btbishop93@gmail.com>",
+      "messages": [],
+      "total_additions": 9,
+      "total_deletions": 0,
+      "accepted_lines": 9,
+      "overriden_lines": 0
+    }
+  }
+}
