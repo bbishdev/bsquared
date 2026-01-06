@@ -41,14 +41,18 @@ export default async function WritingPage() {
               key={article.slug}
               delay={BLUR_FADE_DELAY * 3 + id * 0.05}
             >
-              <Link href={`/writing/${article.slug}`} className="block group">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-4">
+              <Link
+                href={`/writing/${article.slug}`}
+                className="block group py-2"
+              >
+                <div className="flex items-start justify-between gap-4">
                   <h2 className="text-lg font-medium group-hover:underline">
                     {article.title}
                   </h2>
-                  <time className="text-sm text-muted-foreground tabular-nums">
-                    {article.date}
-                  </time>
+                  <div className="flex flex-col text-xs text-muted-foreground tabular-nums text-right shrink-0">
+                    <time>{article.dateFormatted}</time>
+                    <span>{article.readTime}</span>
+                  </div>
                 </div>
                 <p className="text-sm text-muted-foreground mt-1">
                   {article.description}
@@ -61,4 +65,3 @@ export default async function WritingPage() {
     </main>
   );
 }
-
