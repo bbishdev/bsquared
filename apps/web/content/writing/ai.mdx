@@ -1,68 +1,173 @@
 ---
 title: "Clearing the road for building with AI"
-description: "Why culture, not control, leads to adaptation"
+description: "Why your org's bottlenecks, not AI, determine how fast you ship."
 date: "2025-08-01"
-published: false
+published: true
 ---
 
-Giving developers AI is like giving someone a supercar and starting them in a traffic jam. Tell them to floor it and you don't get to your desination faster, you crash.
+Giving developers AI is like giving someone an F1 supercar and sticking them in a traffic jam. Tell them to floor it; you don't get there faster. You crash.
 
-![Traffic gif](/ai/traffic.gif)
+![Traffic gif](/writing/ai/traffic.gif)
 
-A strong developer with these AI skills can already ship what a team of a dozen can do today. Velocity is compounding, not incremental.
+A strong developer with AI can already ship what a team of a dozen used to. Velocity is compounding, not incremental.
 
-The question becomes... "Are your systems, orgs, proecessed ready to handle that kind of output?"
+So the real question is:
 
-You don't need a faster car. You need a better road system, highways. Paths with fewer red lights, smoother lanes, and more autonomy. Otherwise, AI acceleration will just amplify the existing problems.
+Are your roads ready for that kind of traffic?
 
-**Code isn't the bottleneck, I don't believe it ever was, and AI will prove it.**
+You don't need a faster car. You need a better road system: fewer red lights, fewer toll booths, fewer roundabouts, and more autonomy to move.
+
+Because AI doesn't fix broken systems.
+It exposes them.
+
+Code was never the bottleneck. AI is about to prove it.
 
 ---
 
 ## Culture first, not tool first
 
-Top-down mandates stall. Bottom-up adoption sticks. I'm a firm believer that transformation starts with culture, not edicts. If you are not familiar with the Law of Diffusion of Innovation, it is probably more relevant today than ever...
+Top-down mandates stall. Bottom-up adoption sticks. Transformation starts with culture, not edicts.
 
-![Law of Diffusion of Innovation](/ai/innovation.png)
+If you're familiar with the Law of Diffusion of Innovation, it's more relevant now than ever.
 
-Innovators and early adopters spark the movement, not exec directives targeting the entire population. Developers need space and autonomy to experiment, push their curiousity, test boundaries, and see how it can apply in practice. Instead of "mandate Co-pilot" and tracking usages, create a culture where using it is obvious, helpful, and celebrated. Real transformation is viral not scheduled.
+![Law of Diffusion of Innovation](/writing/ai/innovation.webp)
+
+Real change comes from innovators and early adopters. Not exec decks telling everyone to "use Copilot now." If you want AI to spread, don't force it. Make it obvious, useful, and socially rewarded. Transformation is viral, not scheduled.
+
+Give developers room to experiment. Let them push boundaries. Let them feel the acceleration themselves.
+
+That's how momentum starts.
 
 ### What NOT to do
 
-Don't retrofit or sprinkle AI into your existing broken systems & processes. You will only amplify the dysfunction. Instead, re-architect for an AI-first ecosystem. Do you need those? What benefits do they offer, are they fast enough? What could it look like without them? Start with small teams and trust. Demand MORE of your systems.
+Don't retrofit AI into broken systems and processes. You'll only amplify the dysfunction. Re-architect for an AI-first ecosystem. Slow approvals? Fragile CI/CD? Org full of handoffs? You'll hit those walls harder with AI.
 
-## Dev excellence is the catalyst
+Start with small teams and trust, re-architect for flow. Demand more from your systems.
 
-Code is becoming a commodity, it is cheap, AI can write it faster than any dev can.
+---
 
-The new premium and value is on having good:
+## Dev excellence is the real accelerator
 
-- **Product Sense** - Knowing what to build and why, not just how
-- **Taste & Judgement** - Making good decisions, FAST, on limited information, UX, architecture, tradeoffs
-- **Generalist Knowldedge** - Seeing and buiding the whole system with AI, not just a a small piece of the puzzle
+Code is becoming a commodity. AI can write it faster than any dev can.
 
-Devs who can go from idea to shiped product end-to-end with good taste will get the biggest ROI from building with AI. The bottlneck isn't code, it's vision and ownership.
+The new premium is:
 
-### What could be stopping them?
+- **Product sense** - Knowing what to build and why
+- **Taste & judgement** - Making good decisions FAST, across UX, architecture, and tradeoffs
+- **Generalist knowledge** - Seeing and building the whole car, not just the doors
+
+The dev who can go from idea → shipped product with good taste and AI is the one who wins.
+
+You already see this in companies like Stripe, Cursor, or Linear. Small, autonomous product teams own everything from UI to infra. They ship in days, sometimes minutes, instead of quarters. That model becomes insanely powerful when you layer AI on top.
+
+### What's slowing them down?
+
+These are your traffic jams:
 
 - Silos
 - Budgeting and planning
-- Manual/slow processes
-- Batched deployment cycles
-- Indefinite internal dependencies (aka. Micro-service Hell)
+- Slow manual processes
+- Batched releases
+- Indefinite internal dependencies
+- "We need a meeting for the meeting" meetings
 
-![Goin' nowhere fast!](/ai/nowhere.gif)
+![Goin' nowhere fast!](/writing/ai/nowhere.gif)
 
-## Conway's Law is not only true, but one of the biggest blockers
+## Conway's Law is the speed limit
 
 > "Any organization that designs a system will produce a design whose structure is a copy of the organization's communication structure."
 
 - Melvin Conway
 
-If you are organized around silos, your software will be siloed. AI's efficiency, speed, and consistency comes to a hard stop when operating in silos (multi-app, separated code & teams). Can you still get some AI gains within the silos? Sure. But there is now a finite cap on that ROI, even in a world of instant code, the comms, dependencies, politics, and meetings between the teams becomes your bottneck, your chaos.
+Siloed orgs produce siloed software. AI's efficiency, speed, and consistency airbags deploy when operating in silos (multi-app, separated code & teams).
+
+Can you still get some gains inside silos? Sure, but there is now a hard ceiling on how much speed you can unlock when teams, repos, and ownership are fragmented.
+
+Your comms structure and team politics becomes the bottleneck.
 
 Organize teams around outcomes not departments/stacks.
 
-### Micro-services & micro-frontends are a paradox to building with AI
+### Micro-services & micro-frontends are toll booths
 
-I've always been hesitant towards the "micro" trends and isolating teams/code for maximum re-use and consistency. I mean I understood it's benefits and why especially large orgs and enterprises went head first into this model, but I was never too convinced on the tradeoffs of developer experience and velocity. Idk why, but in my mind I've always just thought the more dependencies you have the less you will be able to get done, this goes for anything in life. You gotta move and waiting on that one friend to help you?...yeah you may be waiting awhile or your schedules don't align, or you gotta bribe them with pizza and beers and sell it as fun! But, if you can move by yourself somehow, you can do it immediately. Especially for CRUD operations, and now... AI can basically do in its sleep. The pro-consistency or common services for everyone to leverage just didnt click for me as being worth it and is more true now than ever.
+I've always been skeptical of the "micro" trend. I get why large enterprises went there to maximize reuse, consistency, and scale. But the tradeoffs for developer experience and velocity weren't worth it. How much time did you save using that common service at the cost of more meetings, comms, priority discussions, dependency timelines, resources, etc.?
+
+![Microservice hell](/writing/ai/microservices.gif)
+
+In my head, more dependencies always meant less movement. That's true in life too. You need to move furniture, but you're waiting on that one friend...schedules don't align...now you're bribing them with pizza and beers and trying to sell it as FUN.
+
+If you can move by yourself somehow, you can just move.
+
+For a huge chunk of software, especially CRUD, AI can do the heavy lifting in its sleep. That makes shared services and cross-team dependencies feel even more expensive.
+
+If one team can code 10× faster but still ships at the same rate because they're waiting on other teams, how much did you really improve?
+
+---
+
+## Speaking of measurements...
+
+In my experience, metrics are incredibly hard to get right AND there is a fundamental misalignment in what different layers of management think they're for. To me, metrics exist for transparency and awareness, to find areas for improvement. But the improvement is different than the metric itself.
+
+To others, metrics becomes the goal.
+
+"AI means we should ship 50% more PRs."
+If you were doing 10, now the target is 15.
+
+I've seen this play out over and over: Agile, DevOps, now AI. The moment a transformation starts, the metrics become the target. This is fundamentally flawed. Devs game PRs easily. Make them smaller. Stage more of them. Ship half-finished work. Congrats, your numbers look great while nothing actually gets better.
+
+> "When a measure becomes a target, it ceases to be a good measure."
+
+- Goodhart's Law
+
+PRs != value delivered
+Velocity != impact
+
+Metrics like PRs should point you towards better questions. Low PRs? What's the impact? What's the Cycle time? High PRs? Same questions.
+
+Metrics shine light on _potential_ inefficiencies, but the metric on its own is neither good nor bad. Track metrics to ask better questions, not to declare fake victories.
+
+If cycle time is fast, defects are low, and customers are happy...do you really care how many PRs someone shipped?
+
+---
+
+## What the road ahead actually looks like
+
+Not that different. It's better to stop speculating and focus on what you can do right now. Even if AI writes 100% of the code, you still need devs directing it. And as it becomes a commodity more and more, demand will explode... Jevons Paradox.
+
+AI just turns the speed dial all the way up. And suddenly everything that was "fine" becomes painfully slow because it demands dev excellence, speed and proper guardrails.
+
+That means the boring stuff still matters. It's still just good software engineering at its core.
+
+**Collapse the feedback loop**
+
+- Ship to prod daily, not monthly, not quarterly
+- Automate and enforce real testing (unit, functional, end-to-end). No excuses; it's too easy with AI now. If you want to trust AI with your code, testing is critical.
+- Fix your CI/CD (seriously, this is still shockingly bad at a lot of places)
+- Give teams autonomy and access to users
+
+**Kill dependencies**
+
+- Organize teams around end-to-end products, not functions
+- Each team owns their UI → backend → infra → data
+- No handoffs, no meetings, no tickets, no waiting.
+
+**Trust devs as owners**
+
+- One strong dev with Cursor or Claude Code can now orchestrate the work of 6–8 people, but only if they own it, soup to nuts.
+
+### Speed is the new baseline
+
+Speed is underestimated. Wildly underestimated. The "iPad generation" expects touch, swipe, pinch-to-zoom, and distrusts things that do not operate that way.
+
+My bet is the "AI generation" will come to expect bug fixes in hours, not sprints; feature requests accommodated same day; and ultimately real-time bespoke software on demand that adapts to their needs.
+
+This builds trust, this becomes the baseline, and if you're still stuck in traffic, the market won't wait for you to catch up.
+
+### This lane is closing
+
+Right now, we're still in the "early days of the internet" but for AI. The road is still mostly empty, but it won't be for long.
+
+Everyone just got a supercar. The only question now is who actually built a highway.
+
+## Shift happens, are you ready?
+
+![Clear the road!](/writing/ai/clear-traffic.gif)
