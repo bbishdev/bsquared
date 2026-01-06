@@ -1,0 +1,27 @@
+apps/web/content/writing/ai.mdx
+  fbf7df155d611b9a 6-7,16,18,20,22,24-31,51,53,61,63,67,75,79,93,99,103,105,109,115,122,128,132,134,136,142,150-153,155,163,165,167,169,171
+apps/web/src/app/writing/[slug]/page.tsx
+  fbf7df155d611b9a 6,9,84-94,97,101-114
+apps/web/src/lib/articles.ts
+  fbf7df155d611b9a 17-18,65-66,76-77,117-118
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.0.25",
+  "base_commit_sha": "f8ec5c06ac0b11df4100dae52026084890b87d40",
+  "prompts": {
+    "fbf7df155d611b9a": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "83b656f3-b6aa-4dff-8e9b-e754cc9bcc3e",
+        "model": "claude-4.5-opus-high-thinking"
+      },
+      "human_author": "Brenden Bishop <btbishop93@gmail.com>",
+      "messages": [],
+      "total_additions": 83,
+      "total_deletions": 40,
+      "accepted_lines": 81,
+      "overriden_lines": 0
+    }
+  }
+}
