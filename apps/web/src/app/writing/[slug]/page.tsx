@@ -81,7 +81,11 @@ export default async function WritingArticlePage({
       </Link>
       <header className="mb-8">
         <h1 className="text-3xl font-bold">{article.meta.title}</h1>
-        <time className="text-muted-foreground">{article.meta.date}</time>
+        <p className="text-muted-foreground">
+          <time>{article.meta.dateFormatted}</time>
+          <span className="mx-2">•</span>
+          <span>{article.meta.readTime}</span>
+        </p>
       </header>
       {article.content}
     </article>
