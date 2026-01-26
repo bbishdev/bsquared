@@ -20,7 +20,7 @@ const navItems = [
 ];
 
 const socialItems = [
-  { href: "https://github.com/btbishop93", icon: GithubIcon, label: "GitHub" },
+  { href: "https://github.com/bbishdev", icon: GithubIcon, label: "GitHub" },
   {
     href: "https://www.linkedin.com/in/brenden-bishop/",
     icon: LinkedinIcon,
