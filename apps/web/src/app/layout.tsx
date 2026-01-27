@@ -4,7 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bsquared.dev"),
+  metadataBase: new URL("https://bbish.dev"),
   title: {
     default: "Brenden Bishop | Builder & Technologist",
     template: "%s | Brenden Bishop",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://bsquared.dev",
+    url: "https://bbish.dev",
     siteName: "Brenden Bishop",
     title: "Brenden Bishop | Builder & Technologist",
     description:

@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://bsquared.dev/sitemap.xml",
+    sitemap: "https://bbish.dev/sitemap.xml",
   };
 }
 

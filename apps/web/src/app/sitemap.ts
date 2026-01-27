@@ -6,31 +6,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     {
-      url: "https://bsquared.dev",
+      url: "https://bbish.dev",
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,
     },
     {
-      url: "https://bsquared.dev/home",
+      url: "https://bbish.dev/home",
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: "https://bsquared.dev/writing",
+      url: "https://bbish.dev/writing",
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.7,
     },
     ...articles.map((article) => ({
-      url: `https://bsquared.dev/writing/${article.slug}`,
+      url: `https://bbish.dev/writing/${article.slug}`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.6,
     })),
     {
-      url: "https://bsquared.dev/terminal",
+      url: "https://bbish.dev/hardcore",
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.5,

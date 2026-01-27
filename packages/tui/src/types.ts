@@ -1,3 +1,10 @@
+import type { Dispatcher } from "./dispatcher";
+import type { ResumeData } from "./commands/resume";
+import type { SkillsData } from "./commands/skills";
+import type { ProjectsData } from "./commands/projects";
+import type { LinksData } from "./commands/links";
+import type { Article } from "./commands/writing";
+
 /**
  * Callback for handling TUI output
  */
@@ -7,6 +14,28 @@ export type OutputHandler = (text: string) => void;
  * Callback for handling user input
  */
 export type InputHandler = (input: string) => void;
+
+/**
+ * Config data for about/tldr commands
+ */
+export interface ConfigData {
+  name: string;
+  title: string;
+  intro: string;
+  bio: string;
+}
+
+/**
+ * Data sources for TUI commands
+ */
+export interface TUIData {
+  config?: ConfigData;
+  resume?: ResumeData;
+  skills?: SkillsData;
+  projects?: ProjectsData;
+  links?: LinksData;
+  articles?: Article[];
+}
 
 /**
  * Interface for the TUI instance
@@ -19,7 +48,7 @@ export interface TUIInstance {
    * Process a line of user input.
    * Triggers the input handler and may produce output via the output handler.
    */
-  handleInput: (input: string) => void;
+  handleInput: (input: string) => Promise<void>;
 
   /**
    * Write text to output (goes to registered output handler)
@@ -52,6 +81,11 @@ export interface TUIInstance {
    * Get the prompt string
    */
   getPrompt: () => string;
+
+  /**
+   * Get the command dispatcher for registering additional commands
+   */
+  getDispatcher: () => Dispatcher;
 }
 
 /**
@@ -69,7 +103,7 @@ export interface TUIOptions {
   welcome?: string;
 
   /**
-   * Enable echo mode - automatically echo input back (default: true for testing)
+   * Data sources for commands
    */
-  echo?: boolean;
+  data?: TUIData;
 }

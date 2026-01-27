@@ -1,15 +1,33 @@
-import type { TUIInstance, TUIOptions, OutputHandler, InputHandler } from "./types.js";
+import type {
+  TUIInstance,
+  TUIOptions,
+  TUIData,
+  OutputHandler,
+  InputHandler,
+} from "./types";
+import { parseInput } from "./parser";
+import { createDispatcher } from "./dispatcher";
+import { fmt, box } from "./format";
+import {
+  createHelpCommand,
+  clearCommand,
+  createAboutCommand,
+  createTldrCommand,
+  createResumeCommand,
+  createSkillsCommand,
+  createLinksCommand,
+  createProjectsCommand,
+  createWritingCommand,
+} from "./commands/index";
 
 const DEFAULT_WELCOME = `
-╔══════════════════════════════════════════════════════════════╗
-║                    BSQUARED TERMINAL                         ║
-║                                                              ║
-║  Type /help for available commands                           ║
-║  Or just ask me anything about Brenden                       ║
-╚══════════════════════════════════════════════════════════════╝
+${fmt.brand("HARDCORE")}
+
+Type ${fmt.command("/help")} for commands, or just ask me anything.
+
 `;
 
-const DEFAULT_PROMPT = "> ";
+const DEFAULT_PROMPT = `${fmt.muted(">")} `;
 
 /**
  * Creates a new TUI instance
@@ -19,7 +37,9 @@ const DEFAULT_PROMPT = "> ";
  *
  * @example
  * ```ts
- * const tui = createTUI({ echo: true });
+ * const tui = createTUI({
+ *   data: { config, resume, skills, projects, links, articles }
+ * });
  *
  * // Platform sends output to terminal/xterm
  * tui.onOutput((text) => socket.send(text));
@@ -35,10 +55,43 @@ const DEFAULT_PROMPT = "> ";
 export function createTUI(options: TUIOptions = {}): TUIInstance {
   const prompt = options.prompt ?? DEFAULT_PROMPT;
   const welcome = options.welcome ?? DEFAULT_WELCOME;
-  const echoEnabled = options.echo ?? true;
+  const data = options.data;
 
   const outputHandlers: OutputHandler[] = [];
   const inputHandlers: InputHandler[] = [];
+
+  // Create command dispatcher
+  const dispatcher = createDispatcher();
+
+  // Register commands if data is provided
+  if (data) {
+    // Static commands
+    dispatcher.register(clearCommand);
+
+    // Data-driven commands
+    if (data.config) {
+      dispatcher.register(createAboutCommand(data.config));
+      dispatcher.register(createTldrCommand(data.config));
+    }
+    if (data.resume) {
+      dispatcher.register(createResumeCommand(data.resume));
+    }
+    if (data.skills) {
+      dispatcher.register(createSkillsCommand(data.skills));
+    }
+    if (data.projects) {
+      dispatcher.register(createProjectsCommand(data.projects));
+    }
+    if (data.links) {
+      dispatcher.register(createLinksCommand(data.links));
+    }
+    if (data.articles) {
+      dispatcher.register(createWritingCommand(data.articles));
+    }
+
+    // Help command needs dispatcher reference (register last)
+    dispatcher.register(createHelpCommand(dispatcher));
+  }
 
   /**
    * Dispatch text to all registered output handlers
@@ -58,16 +111,43 @@ export function createTUI(options: TUIOptions = {}): TUIInstance {
     }
   }
 
+  /**
+   * Handle AI messages (non-command input)
+   * For now, just show a placeholder. Will be replaced with actual AI agent.
+   */
+  function handleMessage(message: string): string {
+    // TODO: Integrate with AI agent
+    return fmt.muted(
+      "AI agent coming soon! For now, try /help to see available commands.",
+    );
+  }
+
   const instance: TUIInstance = {
-    handleInput(input: string): void {
+    async handleInput(input: string): Promise<void> {
       const trimmed = input.trim();
 
-      // Echo the input back if echo mode is enabled
-      if (echoEnabled && trimmed) {
-        dispatchOutput(`Echo: ${trimmed}\n`);
+      if (!trimmed) {
+        dispatchOutput(prompt);
+        return;
       }
 
-      // Dispatch to input handlers for further processing
+      // Parse the input
+      const parsed = parseInput(trimmed);
+
+      let output: string;
+
+      if (parsed.type === "command") {
+        // Execute the command
+        output = await dispatcher.execute(parsed.command, parsed.args);
+      } else {
+        // Handle as AI message
+        output = handleMessage(parsed.raw);
+      }
+
+      // Send output
+      dispatchOutput(output + "\n");
+
+      // Dispatch to input handlers for additional processing
       dispatchInput(trimmed);
 
       // Show prompt for next input
@@ -96,6 +176,10 @@ export function createTUI(options: TUIOptions = {}): TUIInstance {
 
     getPrompt(): string {
       return prompt;
+    },
+
+    getDispatcher() {
+      return dispatcher;
     },
   };
 

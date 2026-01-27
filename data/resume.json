@@ -6,7 +6,7 @@
       "logoUrl": "/logos/morgan-stanley.png",
       "start": "2015",
       "end": "Now",
-      "description": "Started as Technical Business Analyst, grew into Front-End Engineer, now VP managing 12 engineers. Led zero-to-one development for financial planning apps. Currently lead engineering strategy for 5 client-facing apps across Morgan Stanley Online & E*TRADE. Pitched and launched a unified planning platform saving $2M+. Now leading firm-wide AI developer enablement & education via live bootcamps and workshops.",
+      "description": "Started as Technical Business Analyst, grew into Front-End Engineer, now VP managing `12 engineers`. Led zero-to-one development for financial planning apps. Currently lead engineering strategy for `5 client-facing apps` across **Morgan Stanley Online** & **E*TRADE**. Pitched and launched a unified planning platform saving `$2M+`. Now leading firm-wide AI developer enablement & education via live bootcamps and workshops.",
       "links": [
         {
           "type": "Website",
@@ -24,7 +24,7 @@
       "logoUrl": "/logos/forwheel.jpg",
       "start": "2021",
       "end": "Now",
-      "description": "Founded mobile app helping food truck owners save time and money. Built end-to-end with Flutter/Firebase for iOS & Android. Developed 'Garnish' AI advisor using OpenAI for menu pricing, permits, and operations guidance. Secured partner discounts with Square, Food Service Direct, and FLIP Insurance. Serving 150+ food trucks nationwide.",
+      "description": "Founded mobile app helping food truck owners save time and money. Built end-to-end with `Flutter/Firebase` for iOS & Android. Developed **Garnish** AI advisor using `OpenAI` for menu pricing, permits, and operations guidance. Secured partner discounts with Square, Food Service Direct, and FLIP Insurance. Serving `150+` food trucks nationwide.",
       "links": [
         {
           "type": "Website",
@@ -46,7 +46,7 @@
       "logoUrl": "/logos/rbitrage.png",
       "start": "2017",
       "end": "2019",
-      "description": "Led technical strategy for algorithmic crypto trading platform using Java, React, and AWS. Grew AUM to $750K in 18 months through automated arbitrage trading. Exited in 2019.",
+      "description": "Led technical strategy for algorithmic crypto trading platform using `Java`, `React`, and `AWS`. Grew AUM to `$750K` in `18 months` through automated arbitrage trading. Exited in 2019.",
       "links": []
     }
   ],

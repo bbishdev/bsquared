@@ -69,6 +69,25 @@ body {
   background: var(--color-muted-foreground);
 }
 
+/* Dark terminal scrollbar */
+.terminal-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.terminal-scrollbar::-webkit-scrollbar-track {
+  background: #0c0c0c;
+}
+
+.terminal-scrollbar::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 4px;
+}
+
+.terminal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #52525b;
+}
+
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.2101 0.0318 264.6645);

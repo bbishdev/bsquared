@@ -1,5 +1,6 @@
 import Markdown from "react-markdown";
 import { BlurFade } from "@/components/ui/blur-fade";
+import { inlineCodeRenderer } from "@/lib/markdown";
 
 export interface AboutSectionProps {
   bio: string;
@@ -14,7 +15,9 @@ export function AboutSection({ bio, blurFadeDelay }: AboutSectionProps) {
       </BlurFade>
       <BlurFade delay={blurFadeDelay * 4}>
         <div className="prose max-w-full text-pretty font-sans text-md text-muted-foreground dark:prose-invert [&>p]:mb-4 [&>p:last-child]:mb-0">
-          <Markdown>{bio}</Markdown>
+          <Markdown components={{ code: inlineCodeRenderer }}>
+            {bio}
+          </Markdown>
         </div>
       </BlurFade>
     </section>

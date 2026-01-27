@@ -151,7 +151,7 @@ export function ModeSelector() {
   return (
     <div className="flex min-h-screen flex-col md:flex-row">
       <ModePanel mode="normal" href="/home" />
-      <ModePanel mode="hardcore" href="/terminal" />
+      <ModePanel mode="hardcore" href="/hardcore" />
     </div>
   );
 }

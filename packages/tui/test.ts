@@ -7,15 +7,77 @@
  * Tests both programmatic usage and interactive mode.
  */
 
-import { createTUI } from "./src/index.js";
+import { createTUI, type TUIData } from "./src/index.js";
 
-function testEchoFunctionality() {
-  console.log("=== TUI Echo Test ===\n");
+// Sample data for testing
+const testData: TUIData = {
+  config: {
+    name: "Brenden Bishop",
+    title: "Builder & Technologist",
+    intro: "Husband, father, and technologist.",
+    bio: "I'm a product-minded technologist with 10+ years of experience.",
+  },
+  skills: {
+    featured: ["JavaScript", "TypeScript", "React"],
+    categories: [
+      { name: "Languages", skills: ["JavaScript", "TypeScript", "Python"] },
+    ],
+  },
+  links: {
+    social: [
+      { name: "GitHub", url: "https://github.com/bbishdev" },
+      { name: "LinkedIn", url: "https://linkedin.com/in/brenden-bishop/" },
+    ],
+  },
+  resume: {
+    work: [
+      {
+        company: "Morgan Stanley",
+        title: "Software Engineering Manager",
+        start: "2015",
+        end: "Now",
+        description: "Leading engineering teams.",
+      },
+    ],
+    education: [
+      {
+        school: "Marist College",
+        degree: "Bachelor's in Computer Science",
+        start: "2011",
+        end: "2015",
+      },
+    ],
+  },
+  projects: {
+    projects: [
+      {
+        title: "Test Project",
+        href: "https://example.com",
+        dates: "2024 - Now",
+        status: "live",
+        description: "A test project.",
+        technologies: ["TypeScript", "React"],
+        links: [],
+      },
+    ],
+  },
+  articles: [
+    {
+      slug: "test-article",
+      title: "Test Article",
+      description: "A test article.",
+      date: "2024-01-01",
+    },
+  ],
+};
+
+async function testTUIFunctionality() {
+  console.log("=== TUI Test ===\n");
 
   const outputs: string[] = [];
 
-  // Create TUI with echo enabled
-  const tui = createTUI({ echo: true });
+  // Create TUI with test data
+  const tui = createTUI({ data: testData });
 
   // Capture all output
   tui.onOutput((text) => {
@@ -30,55 +92,81 @@ function testEchoFunctionality() {
   const prompt = tui.getPrompt();
   console.log("✓ getPrompt() returns:", JSON.stringify(prompt));
 
-  // Test 3: Handle input triggers echo
-  outputs.length = 0; // Clear
-  tui.handleInput("hello world");
+  // Test 3: Handle /help command
+  outputs.length = 0;
+  await tui.handleInput("/help");
+  const hasHelp = outputs.some((o) => o.includes("Commands"));
+  console.log("✓ /help shows commands:", hasHelp);
 
-  const hasEcho = outputs.some((o) => o.includes("Echo: hello world"));
-  const hasPrompt = outputs.some((o) => o.includes(prompt));
+  // Test 4: Handle /about command
+  outputs.length = 0;
+  await tui.handleInput("/about");
+  const hasAbout = outputs.some((o) => o.includes("Brenden Bishop"));
+  console.log("✓ /about shows name:", hasAbout);
 
-  console.log("✓ handleInput echoes input:", hasEcho);
-  console.log("✓ handleInput shows prompt after:", hasPrompt);
+  // Test 5: Handle /skills command
+  outputs.length = 0;
+  await tui.handleInput("/skills");
+  const hasSkills = outputs.some((o) => o.includes("JavaScript"));
+  console.log("✓ /skills shows skills:", hasSkills);
 
-  // Test 4: onInput callback
+  // Test 6: Handle unknown command
+  outputs.length = 0;
+  await tui.handleInput("/unknown");
+  const hasUnknown = outputs.some((o) => o.includes("Unknown command"));
+  console.log("✓ Unknown command shows error:", hasUnknown);
+
+  // Test 7: Handle natural language (AI placeholder)
+  outputs.length = 0;
+  await tui.handleInput("What skills does Brenden have?");
+  const hasAIPlaceholder = outputs.some((o) =>
+    o.includes("AI agent coming soon"),
+  );
+  console.log("✓ Natural language shows placeholder:", hasAIPlaceholder);
+
+  // Test 8: onInput callback
   let receivedInput = "";
   tui.onInput((input) => {
     receivedInput = input;
   });
+  await tui.handleInput("test input");
+  console.log("✓ onInput receives input:", receivedInput === "test input");
 
-  tui.handleInput("test input");
-  console.log("✓ onInput receives trimmed input:", receivedInput === "test input");
-
-  // Test 5: write and writeLine
+  // Test 9: write and writeLine
   outputs.length = 0;
   tui.write("no newline");
   tui.writeLine("with newline");
+  console.log(
+    "✓ write() outputs without newline:",
+    outputs[0] === "no newline",
+  );
+  console.log(
+    "✓ writeLine() outputs with newline:",
+    outputs[1] === "with newline\n",
+  );
 
-  console.log("✓ write() outputs without newline:", outputs[0] === "no newline");
-  console.log("✓ writeLine() outputs with newline:", outputs[1] === "with newline\n");
-
-  // Test 6: Empty input handling
+  // Test 10: Empty input handling
   outputs.length = 0;
-  tui.handleInput("   ");
-  const emptyEcho = outputs.some((o) => o.includes("Echo:"));
-  console.log("✓ Empty input doesn't echo:", !emptyEcho);
+  await tui.handleInput("   ");
+  console.log("✓ Empty input just shows prompt:", outputs.length === 1);
 
   // Summary
   console.log("\n=== All Tests Passed ===\n");
 
-  // Show sample output
+  // Show sample session
   console.log("Sample session output:");
   console.log("---");
 
-  const demo = createTUI({ echo: true });
+  const demo = createTUI({ data: testData });
   demo.onOutput((text) => process.stdout.write(text));
   demo.write(demo.getWelcome());
   demo.write(demo.getPrompt());
-  demo.handleInput("/help");
-  demo.handleInput("What skills does Brenden have?");
+  await demo.handleInput("/help");
+  await demo.handleInput("/about");
+  await demo.handleInput("What skills does Brenden have?");
 
-  console.log("---");
+  console.log("\n---");
 }
 
 // Run tests
-testEchoFunctionality();
+testTUIFunctionality().catch(console.error);

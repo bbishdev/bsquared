@@ -4,10 +4,12 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
+import Markdown from "react-markdown";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { getLinkIcon } from "@/lib/link-icons";
+import { inlineCodeRenderer } from "@/lib/markdown";
 
 interface ResumeCardProps {
   logoUrl?: string;
@@ -66,7 +68,7 @@ export function ResumeCard({
             <ChevronRightIcon
               className={cn(
                 "size-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100",
-                isExpanded ? "rotate-90" : "rotate-0"
+                isExpanded ? "rotate-90" : "rotate-0",
               )}
             />
           </h3>
@@ -90,11 +92,13 @@ export function ResumeCard({
               duration: 0.7,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className="mt-2 text-xs sm:text-sm text-muted-foreground"
+            className="mt-2 text-xs sm:text-sm text-muted-foreground prose prose-sm dark:prose-invert max-w-none"
           >
-            {description}
+            <Markdown components={{ code: inlineCodeRenderer }}>
+              {description}
+            </Markdown>
             {links && links.length > 0 && (
-              <div className="flex flex-row flex-wrap items-start gap-1 py-4">
+              <div className="flex flex-row flex-wrap items-start gap-1 py-4 not-prose">
                 {links.map((link, idx) => (
                   <Link
                     href={link.href}

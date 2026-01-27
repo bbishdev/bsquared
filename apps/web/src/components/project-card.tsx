@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card";
 import { getGradientForString } from "@/lib/gradients";
 import { cn } from "@/lib/utils";
+import { inlineCodeRenderer } from "@/lib/markdown";
 
 type ProjectStatus = "live" | "development" | "concept";
 
@@ -127,7 +128,9 @@ export function ProjectCard({
             {link?.replace("https://", "").replace("www.", "").replace("/", "")}
           </div>
           <div className="prose max-w-full text-pretty font-sans text-xs text-muted-foreground dark:prose-invert">
-            <Markdown>{description}</Markdown>
+            <Markdown components={{ code: inlineCodeRenderer }}>
+              {description}
+            </Markdown>
           </div>
         </div>
       </CardHeader>
