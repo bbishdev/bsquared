@@ -1,0 +1,83 @@
+packages/tui/src/commands/projects.ts
+  75feb5bbf9d42060 1
+apps/web/src/components/resume-card.tsx
+  75feb5bbf9d42060 7,95,99
+  ae20dc434cab4fc5 12,97,101
+apps/web/src/lib/markdown.tsx
+  ae20dc434cab4fc5 1-11
+apps/web/src/app/layout.tsx
+  6ab4638145a4bf88 7,31
+packages/tui/src/commands/resume.ts
+  75feb5bbf9d42060 2,28
+apps/web/src/components/project-card.tsx
+  ae20dc434cab4fc5 14,131-132
+packages/tui/src/format.ts
+  75feb5bbf9d42060 1-18,26-28,31-32,35-37,40-43,46,53,55,57,59,61-62,72,74,76,78,80-81,86-87,208-216,219-227
+  ae20dc434cab4fc5 217-218
+data/config.json
+  75feb5bbf9d42060 8
+packages/tui/src/commands/about.ts
+  75feb5bbf9d42060 1,16-21,29
+apps/web/src/components/sections/about-section.tsx
+  ae20dc434cab4fc5 3,18-19
+apps/web/src/components/terminal/terminal-window.tsx
+  6ab4638145a4bf88 167-169,173-179
+apps/web/src/app/sitemap.ts
+  6ab4638145a4bf88 9,15,21,27,33
+data/resume.json
+  75feb5bbf9d42060 9,27,49
+apps/web/src/components/terminal/welcome.tsx
+  6ab4638145a4bf88 15
+apps/web/src/components/terminal/title-bar.tsx
+  6ab4638145a4bf88 43,45-46,49,61,73,79,83-84,89
+packages/tui/package.json
+  75feb5bbf9d42060 18
+apps/web/src/app/robots.ts
+  6ab4638145a4bf88 9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.0.25",
+  "base_commit_sha": "08a259aa60acff35c2642bdc0d3c908b6d8cf5d5",
+  "prompts": {
+    "6ab4638145a4bf88": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "d71a2793-3aa5-48ef-aaf1-015f9b458741",
+        "model": "claude-4.5-opus-high-thinking"
+      },
+      "human_author": "Brenden Bishop <btbishop93@gmail.com>",
+      "messages": [],
+      "total_additions": 41,
+      "total_deletions": 20,
+      "accepted_lines": 29,
+      "overriden_lines": 2
+    },
+    "75feb5bbf9d42060": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "e101ca9e-0d0f-4a43-82de-b3baaac71079",
+        "model": "claude-4.5-opus-high-thinking"
+      },
+      "human_author": "Brenden Bishop <btbishop93@gmail.com>",
+      "messages": [],
+      "total_additions": 111,
+      "total_deletions": 68,
+      "accepted_lines": 83,
+      "overriden_lines": 0
+    },
+    "ae20dc434cab4fc5": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "0b4b5493-fcdd-447b-a96c-b46eba5dd11f",
+        "model": "claude-4.5-opus-high-thinking"
+      },
+      "human_author": "Brenden Bishop <btbishop93@gmail.com>",
+      "messages": [],
+      "total_additions": 42,
+      "total_deletions": 14,
+      "accepted_lines": 31,
+      "overriden_lines": 0
+    }
+  }
+}
