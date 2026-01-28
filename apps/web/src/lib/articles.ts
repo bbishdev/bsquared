@@ -5,6 +5,8 @@ import { cache } from "react";
 
 const CONTENT_DIR = path.join(process.cwd(), "content", "writing");
 const WORDS_PER_MINUTE = 180;
+const CONTENT_DIR_RESOLVED = path.resolve(CONTENT_DIR);
+const SAFE_SLUG_PATTERN = /^[a-z0-9-]+$/;
 
 export interface ArticleMeta {
   title: string;
@@ -45,6 +47,31 @@ function toSlug(filename: string): string {
 
 function isMdxFile(filename: string): boolean {
   return filename.endsWith(".mdx") || filename.endsWith(".md");
+}
+
+function normalizeSlug(slug: string): string {
+  const normalized = slug.trim().toLowerCase();
+  if (!SAFE_SLUG_PATTERN.test(normalized)) {
+    throw new Error(`Invalid slug: ${slug}`);
+  }
+  return normalized;
+}
+
+function resolveArticlePath(slug: string): string | null {
+  const safeSlug = normalizeSlug(slug);
+  const candidates = [`${safeSlug}.mdx`, `${safeSlug}.md`];
+
+  for (const filename of candidates) {
+    const resolvedPath = path.resolve(CONTENT_DIR_RESOLVED, filename);
+    if (!resolvedPath.startsWith(`${CONTENT_DIR_RESOLVED}${path.sep}`)) {
+      continue;
+    }
+    if (fs.existsSync(resolvedPath)) {
+      return resolvedPath;
+    }
+  }
+
+  return null;
 }
 
 export const getAllArticles = cache((): ArticleMeta[] => {
@@ -88,14 +115,7 @@ export const getArticleBySlug = cache(
     meta: Omit<ArticleMeta, "slug">;
     content: string;
   } => {
-    const filePathMdx = path.join(CONTENT_DIR, `${slug}.mdx`);
-    const filePathMd = path.join(CONTENT_DIR, `${slug}.md`);
-
-    const filePath = fs.existsSync(filePathMdx)
-      ? filePathMdx
-      : fs.existsSync(filePathMd)
-      ? filePathMd
-      : null;
+    const filePath = resolveArticlePath(slug);
 
     if (!filePath) {
       throw new Error(`Article not found for slug: ${slug}`);

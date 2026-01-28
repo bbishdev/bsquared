@@ -124,15 +124,14 @@ export function createTUI(options: TUIOptions = {}): TUIInstance {
 
   const instance: TUIInstance = {
     async handleInput(input: string): Promise<void> {
-      const trimmed = input.trim();
+      // Parse the input
+      const parsed = parseInput(input);
+      const sanitizedRaw = parsed.raw;
 
-      if (!trimmed) {
+      if (!sanitizedRaw) {
         dispatchOutput(prompt);
         return;
       }
-
-      // Parse the input
-      const parsed = parseInput(trimmed);
 
       let output: string;
 
@@ -141,14 +140,14 @@ export function createTUI(options: TUIOptions = {}): TUIInstance {
         output = await dispatcher.execute(parsed.command, parsed.args);
       } else {
         // Handle as AI message
-        output = handleMessage(parsed.raw);
+        output = handleMessage(sanitizedRaw);
       }
 
       // Send output
       dispatchOutput(output + "\n");
 
       // Dispatch to input handlers for additional processing
-      dispatchInput(trimmed);
+      dispatchInput(sanitizedRaw);
 
       // Show prompt for next input
       dispatchOutput(prompt);

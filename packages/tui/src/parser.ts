@@ -5,6 +5,13 @@ export type ParsedInput =
   | { type: "command"; command: string; args: string[]; raw: string }
   | { type: "message"; raw: string };
 
+const MAX_INPUT_LENGTH = 1000;
+const CONTROL_CHAR_PATTERN = /[\u0000-\u001F\u007F]/g;
+
+function sanitizeInput(input: string): string {
+  return input.replace(CONTROL_CHAR_PATTERN, "").slice(0, MAX_INPUT_LENGTH).trim();
+}
+
 /**
  * Parse user input into a command or message
  *
@@ -17,12 +24,12 @@ export type ParsedInput =
  * parseInput("tell me about forwheel") → { type: "message", raw: "tell me about forwheel" }
  */
 export function parseInput(input: string): ParsedInput {
-  const trimmed = input.trim();
+  const sanitized = sanitizeInput(input);
 
   // Commands start with /
-  if (trimmed.startsWith("/")) {
+  if (sanitized.startsWith("/")) {
     // Split on whitespace, filter out empty strings
-    const parts = trimmed.slice(1).split(/\s+/).filter(Boolean);
+    const parts = sanitized.slice(1).split(/\s+/).filter(Boolean);
 
     // Extract command name (first part) and args (rest)
     const command = parts[0]?.toLowerCase() ?? "";
@@ -32,13 +39,13 @@ export function parseInput(input: string): ParsedInput {
       type: "command",
       command,
       args,
-      raw: input,
+      raw: sanitized,
     };
   }
 
   // Everything else is a message for the AI
   return {
     type: "message",
-    raw: input,
+    raw: sanitized,
   };
 }
