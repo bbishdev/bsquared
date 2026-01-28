@@ -13,6 +13,17 @@ export interface CommandDefinition {
   handler: CommandHandler;
 }
 
+const COMMAND_NAME_PATTERN = /^[a-z0-9-]+$/;
+const MAX_COMMAND_LENGTH = 32;
+
+function isValidCommandName(command: string): boolean {
+  return (
+    command.length > 0 &&
+    command.length <= MAX_COMMAND_LENGTH &&
+    COMMAND_NAME_PATTERN.test(command)
+  );
+}
+
 /**
  * Command dispatcher interface
  */
@@ -50,6 +61,9 @@ export function createDispatcher(): Dispatcher {
     },
 
     async execute(command, args) {
+      if (!isValidCommandName(command)) {
+        return "Invalid command. Type /help for available commands.";
+      }
       const cmd = commands.get(command);
       if (!cmd) {
         return `Unknown command: /${command}. Type /help for available commands.`;
