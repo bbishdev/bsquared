@@ -12,6 +12,7 @@ import {
 import type { MotionProps } from "motion/react"
 
 import { cn } from "@/lib/utils"
+import GlassSurface from "@/components/glass-surface"
 
 export interface DockProps extends VariantProps<typeof dockVariants> {
   className?: string
@@ -29,7 +30,7 @@ const DEFAULT_DISTANCE = 140
 const DEFAULT_DISABLEMAGNIFICATION = false
 
 const dockVariants = cva(
-  "supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10 mx-auto mt-8 flex h-[58px] w-max items-center justify-center gap-2 rounded-2xl border p-2 backdrop-blur-md"
+  "mx-auto flex h-[58px] w-max items-center justify-center gap-2 rounded-full px-1"
 )
 
 const Dock = React.forwardRef<HTMLDivElement, DockProps>(
@@ -68,19 +69,37 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
     }
 
     return (
-      <motion.div
-        ref={ref}
-        onMouseMove={(e) => mouseX.set(e.pageX)}
-        onMouseLeave={() => mouseX.set(Infinity)}
-        {...props}
-        className={cn(dockVariants({ className }), {
-          "items-start": direction === "top",
-          "items-center": direction === "middle",
-          "items-end": direction === "bottom",
-        })}
+      <GlassSurface
+        width="fit-content"
+        height="fit-content"
+        borderRadius={999}
+        displace={0.35}
+        distortionScale={-130}
+        redOffset={5}
+        greenOffset={9}
+        blueOffset={13}
+        brightness={35}
+        opacity={0.7}
+        backgroundOpacity={0.2}
+        blur={14}
+        saturation={1.35}
+        mixBlendMode="screen"
+        className="pointer-events-auto px-2"
       >
-        {renderChildren()}
-      </motion.div>
+        <motion.div
+          ref={ref}
+          onMouseMove={(e) => mouseX.set(e.pageX)}
+          onMouseLeave={() => mouseX.set(Infinity)}
+          {...props}
+          className={cn(dockVariants({ className }), {
+            "items-start": direction === "top",
+            "items-center": direction === "middle",
+            "items-end": direction === "bottom",
+          })}
+        >
+          {renderChildren()}
+        </motion.div>
+      </GlassSurface>
     )
   }
 )
@@ -114,17 +133,19 @@ const DockIcon = ({
   const defaultMouseX = useMotionValue(Infinity)
 
   const distanceCalc = useTransform(mouseX ?? defaultMouseX, (val: number) => {
-    const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 }
+    const bounds = ref.current?.getBoundingClientRect()
+    if (!bounds || !Number.isFinite(val)) return Infinity
     return val - bounds.x - bounds.width / 2
   })
 
   const targetSize = disableMagnification ? size : magnification
 
-  const sizeTransform = useTransform(
-    distanceCalc,
-    [-distance, 0, distance],
-    [size, targetSize, size]
-  )
+  const sizeTransform = useTransform(distanceCalc, (distanceValue) => {
+    if (!Number.isFinite(distanceValue)) return size
+    const clamped = Math.min(Math.abs(distanceValue), distance)
+    const progress = 1 - clamped / distance
+    return size + (targetSize - size) * progress
+  })
 
   const scaleSize = useSpring(sizeTransform, {
     mass: 0.1,
