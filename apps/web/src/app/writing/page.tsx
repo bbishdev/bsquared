@@ -46,17 +46,19 @@ export default async function WritingPage() {
                 className="block group py-2"
               >
                 <div className="flex items-start justify-between gap-4">
-                  <h2 className="text-lg font-medium group-hover:underline">
-                    {article.title}
-                  </h2>
+                  <div>
+                    <h2 className="text-lg font-medium group-hover:underline">
+                      {article.title}
+                    </h2>
+                    <p className="text-sm text-muted-foreground mt-1">
+                      {article.description}
+                    </p>
+                  </div>
                   <div className="flex flex-col text-xs text-muted-foreground tabular-nums text-right shrink-0">
                     <time>{article.dateFormatted}</time>
                     <span>{article.readTime}</span>
                   </div>
                 </div>
-                <p className="text-sm text-muted-foreground mt-1">
-                  {article.description}
-                </p>
               </Link>
             </BlurFade>
           ))}
