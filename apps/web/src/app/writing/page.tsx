@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { getAllArticles } from "@/lib/articles";
-
-const BLUR_FADE_DELAY = 0.04;
+import { BLUR_FADE_DELAY } from "@/constants/animation";
 
 export const metadata = {
   title: "Writing",

@@ -2,6 +2,7 @@
 
 import { Renderer, Program, Mesh, Color, Triangle } from 'ogl';
 import React, { useEffect, useRef, useMemo, useCallback } from 'react';
+import { hexToRgb } from '@/lib/color-utils';
 
 type Vec2 = [number, number];
 
@@ -231,17 +232,6 @@ void main() {
     gl_FragColor = vec4(col, 1.0);
 }
 `;
-
-function hexToRgb(hex: string): [number, number, number] {
-  let h = hex.replace('#', '').trim();
-  if (h.length === 3)
-    h = h
-      .split('')
-      .map(c => c + c)
-      .join('');
-  const num = parseInt(h, 16);
-  return [((num >> 16) & 255) / 255, ((num >> 8) & 255) / 255, (num & 255) / 255];
-}
 
 export default function FaultyTerminal({
   scale = 1,

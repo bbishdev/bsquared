@@ -1,25 +1,7 @@
 import { BlurFade } from "@/components/ui/blur-fade";
 import { ProjectCard } from "@/components/project-card";
 import { getLinkIcon } from "@/lib/link-icons";
-
-export interface ProjectLinkItem {
-  type: string;
-  href: string;
-}
-
-export type ProjectStatus = "live" | "development" | "concept";
-
-export interface ProjectItem {
-  title: string;
-  href?: string;
-  description: string;
-  dates: string;
-  status: ProjectStatus;
-  technologies: readonly string[];
-  image?: string;
-  video?: string;
-  links?: readonly ProjectLinkItem[];
-}
+import type { ProjectItem } from "@/types/project";
 
 export interface ProjectsSectionProps {
   projects: readonly ProjectItem[];

@@ -3,19 +3,16 @@ import { AboutSection } from "@/components/sections/about-section";
 import { WorkSection } from "@/components/sections/work-section";
 import { EducationSection } from "@/components/sections/education-section";
 import { SkillsSection } from "@/components/sections/skills-section";
-import {
-  ProjectsSection,
-  type ProjectItem,
-} from "@/components/sections/projects-section";
+import { ProjectsSection } from "@/components/sections/projects-section";
 import { ContactSection } from "@/components/sections/contact-section";
+import { BLUR_FADE_DELAY } from "@/constants/animation";
+import type { ProjectItem } from "@/types/project";
 import config from "@/../../../data/config.json";
 import resumeData from "@/../../../data/resume.json";
 import skillsData from "@/../../../data/skills.json";
 import projectsData from "@/../../../data/projects.json";
 
 const projects = projectsData.projects as ProjectItem[];
-
-const BLUR_FADE_DELAY = 0.04;
 
 export default function HomePage() {
   return (
