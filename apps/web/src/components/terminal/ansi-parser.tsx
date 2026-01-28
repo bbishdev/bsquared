@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment } from "react";
+import { Fragment, useMemo, memo } from "react";
 
 /**
  * ANSI escape code parser that converts terminal output to React elements
@@ -119,16 +119,17 @@ interface AnsiTextProps {
   className?: string;
 }
 
-export function AnsiText({ text, className }: AnsiTextProps) {
-  // Split by lines first to preserve line breaks
-  const lines = text.split("\n");
+export const AnsiText = memo(function AnsiText({ text, className }: AnsiTextProps) {
+  const parsedLines = useMemo(() => {
+    return text.split("\n").map((line) => parseAnsi(line));
+  }, [text]);
 
   return (
     <div className={className}>
-      {lines.map((line, lineIndex) => (
+      {parsedLines.map((segments, lineIndex) => (
         <Fragment key={lineIndex}>
           {lineIndex > 0 && <br />}
-          {parseAnsi(line).map((segment, segIndex) => (
+          {segments.map((segment, segIndex) => (
             <span key={segIndex} style={segmentToStyle(segment.styles)}>
               {segment.text}
             </span>
@@ -137,4 +138,4 @@ export function AnsiText({ text, className }: AnsiTextProps) {
       ))}
     </div>
   );
-}
+});
