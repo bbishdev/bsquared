@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useCallback } from "react";
+import { useRef, useEffect, useCallback, memo } from "react";
 import { AnsiText } from "./ansi-parser";
 
 export interface TerminalMessage {
@@ -13,6 +13,35 @@ export interface TerminalMessage {
 interface MessageListProps {
   messages: TerminalMessage[];
 }
+
+const MessageItem = memo(function MessageItem({ msg }: { msg: TerminalMessage }) {
+  return (
+    <div
+      className={`
+        py-2 px-3 rounded-md
+        ${
+          msg.type === "user"
+            ? "bg-zinc-800/50 border-l-2 border-cyan-500/50"
+            : "bg-transparent"
+        }
+      `}
+    >
+      {msg.type === "user" ? (
+        <div className="flex items-start gap-2">
+          <span className="text-cyan-400 select-none">❯</span>
+          <span className="text-zinc-100 break-words whitespace-pre-wrap">
+            {msg.content}
+          </span>
+        </div>
+      ) : (
+        <AnsiText
+          text={msg.content}
+          className="text-zinc-300 break-words whitespace-pre-wrap leading-relaxed"
+        />
+      )}
+    </div>
+  );
+});
 
 export function MessageList({ messages }: MessageListProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -48,31 +77,7 @@ export function MessageList({ messages }: MessageListProps) {
       className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden px-4 py-2 space-y-1 terminal-scrollbar"
     >
       {messages.map((msg) => (
-        <div
-          key={msg.id}
-          className={`
-            py-2 px-3 rounded-md
-            ${
-              msg.type === "user"
-                ? "bg-zinc-800/50 border-l-2 border-cyan-500/50"
-                : "bg-transparent"
-            }
-          `}
-        >
-          {msg.type === "user" ? (
-            <div className="flex items-start gap-2">
-              <span className="text-cyan-400 select-none">❯</span>
-              <span className="text-zinc-100 break-words whitespace-pre-wrap">
-                {msg.content}
-              </span>
-            </div>
-          ) : (
-            <AnsiText
-              text={msg.content}
-              className="text-zinc-300 break-words whitespace-pre-wrap leading-relaxed"
-            />
-          )}
-        </div>
+        <MessageItem key={msg.id} msg={msg} />
       ))}
     </div>
   );

@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { ProjectCard } from "@/components/project-card";
 import { getLinkIcon } from "@/lib/link-icons";
@@ -12,10 +13,14 @@ export function ProjectsSection({
   projects,
   blurFadeDelay,
 }: ProjectsSectionProps) {
-  const mainProjects = projects.filter(
-    (p) => p.status === "live" || p.status === "development"
+  const mainProjects = useMemo(
+    () => projects.filter((p) => p.status === "live" || p.status === "development"),
+    [projects]
   );
-  const conceptProjects = projects.filter((p) => p.status === "concept");
+  const conceptProjects = useMemo(
+    () => projects.filter((p) => p.status === "concept"),
+    [projects]
+  );
 
   return (
     <section id="projects">

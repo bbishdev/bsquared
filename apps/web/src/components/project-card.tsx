@@ -1,3 +1,4 @@
+import { memo, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Markdown from "react-markdown";
@@ -32,7 +33,7 @@ interface ProjectCardProps {
   className?: string;
 }
 
-export function ProjectCard({
+export const ProjectCard = memo(function ProjectCard({
   title,
   href,
   description,
@@ -46,7 +47,7 @@ export function ProjectCard({
   className,
 }: ProjectCardProps) {
   const statusConfig = status ? STATUS_CONFIG[status] : null;
-  const gradient = getGradientForString(title);
+  const gradient = useMemo(() => getGradientForString(title), [title]);
 
   return (
     <Card className="flex flex-col overflow-hidden border hover:shadow-lg transition-all duration-300 ease-out h-full !py-0">
@@ -144,4 +145,4 @@ export function ProjectCard({
       </CardFooter>
     </Card>
   );
-}
+});
