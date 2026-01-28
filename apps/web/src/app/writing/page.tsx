@@ -5,7 +5,7 @@ import { BLUR_FADE_DELAY } from "@/constants/animation";
 
 export const metadata = {
   title: "Writing",
-  description: "Thoughts on technology, AI, and building products.",
+  description: "Thoughts on life, technology, AI, and building products.",
 };
 
 export default async function WritingPage() {
@@ -21,7 +21,9 @@ export default async function WritingPage() {
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 2}>
           <p className="mt-4 text-muted-foreground">
-            Thoughts on technology, AI, and building products.
+            Thoughts on life, technology, AI, and building products. I do not
+            have a cadence I simply brain dump here when I have something to
+            say.
           </p>
         </BlurFade>
       </section>
