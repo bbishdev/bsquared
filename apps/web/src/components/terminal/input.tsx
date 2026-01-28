@@ -156,6 +156,7 @@ export function TerminalInput({
         <input
           ref={inputRef}
           type="text"
+          name="terminal-input"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
@@ -164,7 +165,11 @@ export function TerminalInput({
           className="flex-1 bg-transparent outline-none text-zinc-200 
                      placeholder:text-zinc-600 text-sm caret-zinc-400"
           autoComplete="off"
+          autoCorrect="off"
+          autoCapitalize="none"
+          inputMode="text"
           spellCheck={false}
+          aria-autocomplete="none"
         />
         {/* Blinking cursor indicator when input is empty */}
         {!input && (

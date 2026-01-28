@@ -5,6 +5,8 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { Globe, Terminal } from "lucide-react";
 import { cn } from "@/lib/utils";
+import LightRays from "@/components/light-rays";
+import { HardcoreBackground } from "@/components/terminal/hardcore-background";
 
 interface ModePanelProps {
   mode: "normal" | "hardcore";
@@ -27,13 +29,37 @@ function ModePanel({ mode, href, disabled }: ModePanelProps) {
         "group cursor-pointer",
         isNormal
           ? "bg-linear-to-br from-zinc-900 to-zinc-950"
-          : "bg-linear-to-br from-black to-zinc-950",
+          : "bg-black",
         disabled && "cursor-not-allowed"
       )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={(e) => disabled && e.preventDefault()}
     >
+      {isHovered && (
+        <div className="pointer-events-none absolute inset-0 z-0">
+          {isNormal ? (
+            <LightRays
+              raysOrigin="top-center"
+              raysColor="#ffffff"
+              raysSpeed={1}
+              lightSpread={0.5}
+              rayLength={3}
+              followMouse={true}
+              mouseInfluence={0.1}
+              noiseAmount={0}
+              distortion={0}
+              className="opacity-70"
+              pulsating={false}
+              fadeDistance={1}
+              saturation={1}
+            />
+          ) : (
+            <HardcoreBackground />
+          )}
+        </div>
+      )}
+
       {/* Content */}
       <motion.div
         className="relative z-10 flex flex-col items-center gap-6"
@@ -122,8 +148,8 @@ function ModePanel({ mode, href, disabled }: ModePanelProps) {
             {isNormal
               ? "Clean, modern portfolio experience"
               : disabled
-              ? "Coming soon... in progress"
-              : "Terminal-based experience"}
+                ? "Coming soon... in progress"
+                : "Terminal-based experience"}
           </motion.p>
 
           {/* Disabled badge for hardcore */}
@@ -155,4 +181,3 @@ export function ModeSelector() {
     </div>
   );
 }
-

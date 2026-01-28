@@ -12,7 +12,7 @@ export function ModeToggle() {
       variant="ghost"
       type="button"
       size="icon"
-      className="size-12"
+      className="size-12 cursor-pointer"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
     >
       <Sun className="h-[1.2rem] w-[1.2rem] text-neutral-800 dark:hidden dark:text-neutral-200" />
@@ -20,4 +20,3 @@ export function ModeToggle() {
     </Button>
   );
 }
-

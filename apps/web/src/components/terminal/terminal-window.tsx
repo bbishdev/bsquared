@@ -8,7 +8,7 @@ import { WelcomeSection } from "./welcome";
 import { MessageList, type TerminalMessage } from "./message-list";
 import { TerminalInput } from "./input";
 import { TerminalFooter } from "./footer";
-import { HardcoreDock } from "./hardcore-dock";
+import { Navbar } from "@/components/navbar";
 import { createTUI, type TUIData } from "@bsquared/tui";
 import type { CommandOption } from "./command-autocomplete";
 
@@ -219,7 +219,9 @@ export function TerminalWindow({ data }: TerminalWindowProps) {
 
       {/* Dock appears when minimized */}
       <AnimatePresence>
-        {isMinimized && <HardcoreDock onRestore={handleRestore} />}
+        {isMinimized && (
+          <Navbar variant="hardcore" onRestore={handleRestore} animateIn />
+        )}
       </AnimatePresence>
     </>
   );
